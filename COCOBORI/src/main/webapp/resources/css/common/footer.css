@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#footer {
+	width: 100%;
+	background-color: #f3bdc2;
+	height: 100px;
+}
+#bottom_logo {
+	margin-left: 10%;
+}
+.footer_info {
+	margin-left: 10%;
+	color: white;
+}
