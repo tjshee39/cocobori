@@ -105,8 +105,8 @@ public class MemberController {
 	//·Î±×¾Æ¿ô
 	@RequestMapping(value="/logOut", method = RequestMethod.GET)
 	public String LogOut(HttpSession session) throws Exception {
-		logger.info("========================================");
-		logger.info("MemberController:: LogOut");
+		System.out.println("========================================");
+		System.out.println("MemberController:: LogOut");
 		
 		service.logOut(session);
 		

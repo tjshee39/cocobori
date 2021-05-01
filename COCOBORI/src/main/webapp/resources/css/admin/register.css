@@ -1,10 +1,16 @@
 @charset "EUC-KR";
 
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
 .inputArea {
 	margin:10px 0; 
 }
 select {
-	width:100px; 
+	width:200px; 
 }
 label {
 	display:inline-block; width:70px; padding:5px; 
@@ -13,7 +19,7 @@ label[for='gdsDes'] {
 	display:block; 
 }
 input { 
-	width:150px; 
+	width:483px; 
 }
 textarea#gdsDes { 
 	width:400px; height:180px; 
@@ -24,7 +30,8 @@ textarea#gdsDes {
 	width: 100%;
 }
 #form_register {
-	margin-left: 35%;	
+	display: flex;
+    justify-content: center;
 }
 #btn_register {
     border-radius: 4px;
@@ -36,4 +43,10 @@ textarea#gdsDes {
 }
 .select_img img {
 	margin: 20px 0;
+}
+#ckEditor {
+	width: fit-content;
+}
+#input_gdsDes {
+	width: 566px;
 }

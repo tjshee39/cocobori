@@ -3,6 +3,9 @@
 .inputArea {
 	margin:10px 0; 
 }
+#container {
+    min-height:100%;    
+}
 select {
 	width:100px; 
 }
@@ -33,4 +36,8 @@ textarea#gdsDes {
     color: white;
     font-weight: bold;
     border: none;
+}
+.select_img img {
+	width: 500px;
+	margin: 20px 0;
 }

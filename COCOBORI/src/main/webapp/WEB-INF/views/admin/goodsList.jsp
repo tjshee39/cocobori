@@ -17,23 +17,26 @@
 	<section id="container">
 		<div id="container_box">
 			<h1 style="text-align: center;">상품 목록</h1>
+			<hr id="header_line"><br>
 			<table id="tbl_goodsList">
 				<thead>
 					<tr style="text-align: left;">
-						<th width="80px">번호</th>
-						<th width="200px">상품명</th>
-						<th width="100px">분류</th>
-						<th width="100px">가격</th>
-						<th width="100px">수량</th>
-						<th width="200px">등록날짜</th>
+						<th>번호</th>
+						<th>썸네일</th>
+						<th>상품명</th>
+						<th>분류</th>
+						<th>가격</th>
+						<th>수량</th>
+						<th>등록날짜</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${list }" var="list">
 					<tr>
 						<td>${list.gdsNum }</td>
+						<td><img src="${list.gdsThumbImg }"></td>
 						<td><a href="/admin/goodsView?n=${list.gdsNum}">${list.gdsName }</a></td>
-						<td>${list.cateCode }</td>
+						<td>${list.cateName }</td>
 						<td><fmt:formatNumber value="${list.gdsPrice }" pattern="###,###,###" /></td>
 						<td>${list.gdsStock }</td>
 						<td><fmt:formatDate value="${list.gdsDate }" pattern="yyyy-MM-dd" /></td>

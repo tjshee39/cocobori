@@ -1,5 +1,11 @@
 @charset "EUC-KR";
 
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
 .inputArea {
 	margin:10px 0; 
 }
@@ -23,8 +29,9 @@ textarea#gdsDes {
 	border-top: 1px solid #d5cbcb;
 	width: 100%;
 }
-#form_register {
-	margin-left: 35%;	
+#form_view {
+	margin: auto;
+    width: 60%;
 }
 label {
 	font-weight: bold;
@@ -40,7 +47,4 @@ label {
 .img_ori {
 	width: 500px;
 	height: auto;
-}
-.img_thumb {
-	
 }

@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-.header_area {
-
-}
 .top_logo, .top_menu {
 	display: inline-block;
 }
@@ -47,6 +44,10 @@ a {
 }
 .top_second_menu ul li.active a, .top_second_menu ul li a:hover {
     color:#f73f52;
+    font-weight: bold;
+}
+a.active {
+    color: #f73f52;
     font-weight: bold;
 }
 #header_line {

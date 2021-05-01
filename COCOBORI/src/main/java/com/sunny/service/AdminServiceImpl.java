@@ -37,7 +37,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	//상품 목록
 	@Override
-	public List<GoodsVO> goodslist() throws Exception {
+	public List<GoodsViewVO> goodslist() throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminServiceImpl:: goodslist");
 		

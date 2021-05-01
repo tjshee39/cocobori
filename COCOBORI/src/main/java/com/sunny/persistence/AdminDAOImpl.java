@@ -40,7 +40,7 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	//상품 목록
 	@Override
-	public List<GoodsVO> goodslist() throws Exception {
+	public List<GoodsViewVO> goodslist() throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminDAOImpl:: goodslist");
 		

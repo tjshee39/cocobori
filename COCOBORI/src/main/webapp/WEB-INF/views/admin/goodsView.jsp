@@ -15,9 +15,9 @@
 	
 	<section id="container">
 		<div id="container_box">
-			<h1 style="text-align: center;">상품 등록</h1>
+			<h1 style="text-align: center;">상품 조회</h1>
 			<hr id="header_line">
-			<div id="form_register">
+			<div id="form_view">
 				<form role="form" method="post" autocomplete="off">
 				<input type="hidden" name="n" value="${goods.gdsNum}" />
 				

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,18 +66,26 @@ public class AdminController {
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 		
-		if(file != null) {
+		//파일 인풋박스에 첨부된 파일이 없다면
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+			
+			//gdsImg: 원본파일 경로 + 파일명
+			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			//gdsThumbImg: 썸네일 경로 + 파일명
+			vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			
 		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			//첨부된 파일이 없으면 none.png파일을 대신 출력
+			fileName = File.separator + "images" + File.separator + "none_image.png";
+			
+			vo.setGdsImg(fileName);
+			vo.setGdsThumbImg(fileName);
 		}
-		
-		vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		
+				
 		adminService.register(vo);
 		
-		return "redirect:/admin/AdminMain";
+		return "redirect:/admin/goodsList";
 	}
 	
 	//상품목록
@@ -85,7 +94,7 @@ public class AdminController {
 		System.out.println("========================================");
 		System.out.println("AdminController:: getGoodsList");
 		
-		List<GoodsVO> list = adminService.goodslist();
+		List<GoodsViewVO> list = adminService.goodslist();
 		
 		model.addAttribute("list", list);
 	}
@@ -119,9 +128,29 @@ public class AdminController {
 	
 	//상품 수정
 	@RequestMapping(value="/goodsModify", method = RequestMethod.POST)
-	public String postGoodsModify(GoodsVO vo) throws Exception {
+	public String postGoodsModify(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminController:: postGoodsModify");
+		
+		//새로운 파일이 등록되었는지 확인
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			//기존 파일 삭제
+			new File(uploadPath + req.getParameter("gdsImg")).delete();
+			new File(uploadPath + req.getParameter("gdsThumbImg")).delete();
+			
+			//새로 첨부한 파일 등록
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			
+			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		} else {  //새로운 파일이 등록되지 않았다면
+			//기존 이미지 그대로 사용
+			vo.setGdsImg(req.getParameter("gdsImg"));
+			vo.setGdsThumbImg(req.getParameter("gdsThumbImg"));
+		}
+		
 		
 		adminService.goodsModify(vo);
 		

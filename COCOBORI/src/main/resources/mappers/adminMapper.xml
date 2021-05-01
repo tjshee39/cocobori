@@ -22,10 +22,13 @@
 	</insert>
 	
 	<!-- 상품 목록 -->
-	<select id="goodslist" resultType="com.sunny.domain.GoodsVO">
-		select gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
-		from tbl_goods
-		order by gdsNum desc
+	<select id="goodslist" resultType="com.sunny.domain.GoodsViewVO">
+		 select
+		 	g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, 
+		 	gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+         from tbl_goods g
+             inner join tbl_goodscategory c
+                 on g.cateCode = c.cateCode
 	</select>
 	
 	<!-- 상품 조회 -->
@@ -56,7 +59,9 @@
 		 		cateCode = #{cateCode},
 		 		gdsPrice = #{gdsPrice},
 		 		gdsStock = #{gdsStock},
-		 		gdsDes = #{gdsDes}
+		 		gdsDes = #{gdsDes},
+		 		gdsImg = #{gdsImg},
+		 		gdsThumbImg = #{gdsThumbImg}
 	 	where gdsNum = #{gdsNum}
 	 </update>
 	 

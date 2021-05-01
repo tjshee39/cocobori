@@ -1,5 +1,34 @@
 @charset "EUC-KR";
 
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
+#header_line {
+	display: block;
+	border-top: 1px solid #d5cbcb;
+	width: 100%;
+}
 #tbl_goodsList {
 	margin: auto;
+	width: 900px;
+}
+#tbl_goodsList tr:hover {
+	background: #eee;
+}
+#tbl_goodsList img {
+	width: 150px; 
+	height: auto;
+	padding: 10px;
+}
+#tbl_goodsList th {
+	text-align: center;
+	border-bottom: 1px solid #d5cbcb;
+	padding-bottom: 10px;
+}
+#tbl_goodsList td {
+	text-align: center;
+	padding: 10px;
 }

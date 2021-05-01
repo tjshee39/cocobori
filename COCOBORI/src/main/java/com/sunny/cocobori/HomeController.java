@@ -1,7 +1,5 @@
 package com.sunny.cocobori;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -23,7 +21,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getHome(Locale locale, Model model) {
+	public String getHome() {
 		System.out.println("========================================");
 		System.out.println("HomeController:: getHome");
 		

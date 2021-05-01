@@ -1,0 +1,63 @@
+@charset "EUC-KR";
+
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
+#content ul li {
+	display: inline-block;
+	margin: 10px;
+}
+section#content ul li img { 
+	width:250px; 
+	height:250px; 
+}
+section#content ul li::after { 
+	content:""; 
+	display:block; 
+	clear:both;
+}
+section#content div.thumb { 
+	float:left; 
+	width:250px;
+}
+section#content div.gdsInfo { 
+	float:right; 
+	width:calc(100% - 270px);
+}
+#tblCart { 
+	font-size:18px; 
+	line-height:2; 
+	padding-left: 7%;
+	padding-bottom: 20px;
+}
+#tblCart span {
+	display:inline-block; 
+	width:100px; 
+	font-weight:bold;
+}
+#tblCart img {
+	width: 250px;
+}
+#content div.goodsName {
+	padding: 10px 0;
+	text-align: center;
+}
+#content div.goodsName a {
+	color: #000;
+}
+#aside {
+	height: 100%;
+}
+.btnDelete {
+	background-color: #f3bdc2;
+ 	border-radius: 7px;
+ 	border: none;
+ 	color: white;
+    font-weight: bold;
+    font-size: 14px; 
+    float: right;
+    padding-bottom: 5px;
+}

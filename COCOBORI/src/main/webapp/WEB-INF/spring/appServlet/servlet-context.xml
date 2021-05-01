@@ -36,16 +36,16 @@
 		<beans:property name="maxUploadSize" value="110485760"/>
 	</beans:bean>
 	
+	<!-- none_image -->
+	<resources mapping="/images/**" location="/resources/images/" />
+	
 	<beans:bean id="AdminInterceptor" class="com.sunny.interceptor.AdminInterceptor" />
 	<interceptors>
 		<interceptor>
-		<mapping path="/main/**" />
+		<mapping path="/admin/**" />
 		<beans:ref bean="AdminInterceptor" />
 		</interceptor>
 	</interceptors>
-	
-	
-	
 	
 	
 </beans:beans>

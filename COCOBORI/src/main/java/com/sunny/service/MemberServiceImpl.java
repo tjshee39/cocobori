@@ -23,6 +23,7 @@ public class MemberServiceImpl implements MemberService{
 	public void signUp(MemberVO vo) throws Exception {
 		System.out.println("========================================");
 		System.out.println("MemberServiceImpl:: signUp");
+		
 		dao.signUp(vo);
 	}
 	

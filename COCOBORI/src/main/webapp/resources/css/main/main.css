@@ -1,0 +1,8 @@
+@charset "EUC-KR";
+
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
