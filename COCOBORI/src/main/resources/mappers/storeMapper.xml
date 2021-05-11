@@ -88,4 +88,10 @@
      		where c.userID = #{userID}
 	</select>
 	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteCart">
+		delete from tbl_cart
+			where cartNum = #{cartNum} and userID = #{userID}
+	</delete>
+	
 </mapper>

@@ -127,5 +127,14 @@ public class StoreDAOImpl implements StoreDAO{
 		return sql.selectList(namespace + ".cartList", userID);	
 	}
 	
+	//장바구니 삭제
+	@Override
+	public void deleteCart(CartVO cart) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreDAOImpl:: deleteCart");
+		
+		sql.delete(namespace + ".deleteCart", cart);
+	}
+	
 
 }

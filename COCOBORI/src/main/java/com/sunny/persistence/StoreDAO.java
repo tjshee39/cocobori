@@ -42,5 +42,8 @@ public interface StoreDAO {
 	
 	//장바구니 목록
 	public List<CartListVO> cartList(String userID) throws Exception;
+	
+	//장바구니 삭제
+	public void deleteCart(CartVO cart) throws Exception;
 
 }

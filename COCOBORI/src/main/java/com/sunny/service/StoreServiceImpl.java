@@ -116,5 +116,14 @@ public class StoreServiceImpl implements StoreService {
 		
 		return dao.cartList(userID);
 	}
+	
+	//장바구니 삭제
+	@Override
+	public void deleteCart(CartVO cart) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreServiceImpl:: deleteCart");
+		
+		dao.deleteCart(cart);
+	}
 
 }

@@ -23,52 +23,113 @@
 			
 			<section id="content">
 				<ul>
-					<c:forEach items="${cartList }" var="cartList">
-						<table id="tblCart">
-							<tr>
-								<td style rowspan="5"><img src="${cartList.gdsThumbImg }"></td>
-								<td><span>상품명</span></td><td>${cartList.gdsName }</td>
-							</tr>
-							<tr>
-								<td><span>가격</span></td><td><fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice }" /></td>
-							</tr>
-							<tr>
-								<td><span>구입 수량</span></td><td>${cartList.cartStock }</td>
-							</tr>
-							<tr>
-								<td><span>최종 가격</span></td><td><fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice * cartList.cartStock }" /></td>
-							</tr>
-							<tr>
-								<td colspan="3">
-									<div class="delete">
-										<button type="button" class="btnDelete">삭제</button>
-									</div>
-								</td>
-							</tr>
-							
-						</table>
-						<!-- 
-						<li>
-							<div class="thumb">
-								<img src="${cartList.gdsThumbImg }">
-							</div>
-							<div class="gdsInfo">
-								<p>
-									<span>상품명:</span>${cartList.gdsName }<br>
-									<span>가격:</span>
-										<fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice }" /> <br>
-									<span>구입 수량:</span>${cartList.cartStock }<br>
-									<span>최종 가격:</span>
-										<fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice * cartList.cartStock }" />
-								</p>
-								
-								<div class="delete">
-									<button type="button" class="btnDelete">삭제</button>
-								</div>
-							</div>
-						</li>
-						 -->
-					</c:forEach>				
+ 					<li>
+	  					<div class="allCheck">
+	   						<input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>
+	   						
+	   						<script>
+		  						$("#allCheck").click(function() {
+		  							var chk = $("#allCheck").prop("checked");
+		  							if(chk) {
+		  								$(".chBox").prop("checked", true);
+		  							} else {
+		  								$(".chBox").prop("checked", false);
+		  							}
+		  						});
+	  						</script> 
+	  					</div>
+	  					
+	  					
+	  
+	  					<div class="delBtn">
+	   						<button type="button" class="selectDelete_btn">선택 삭제</button> 
+		  					
+		  					<script>
+		  						$(".selectDelete_btn").click(function() {
+		  							var confirm_val = confirm("정말 삭제하시겠습니까?");
+		  							
+		  							if(confirm_val) {
+		  								var checkArr = new Array();
+		  								
+		  								$("input[class='chBox']:checked").each(function() {
+		  									checkArr.push($(this).attr("data-cartNum"));
+		  								});
+		  								
+		  								$.ajax({
+		  									url: "/store/deleteCart",
+		  									type: "post",
+		  									data: { chbox: checkArr },
+		  									success: function(result) {
+		  										if(result == 1) {
+		  											location.href = "/store/cartList";	
+		  										} else {
+		  											alert("삭제 실패");
+		  										}
+		  										
+		  									}
+		  								});
+		  							}
+		  						});
+		  					</script>
+	  					</div>
+	  					
+   					</li>
+
+ 					<c:forEach items="${cartList}" var="cartList">
+ 					<li>
+  						<div class="checkBox">
+   							<input type="checkbox" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}" />
+   							
+   							<script>
+	  							$(".chBox").click(function() {
+	  								$("#allCheck").prop("checked", false);
+	  							});
+  							</script>
+  						</div>
+ 
+						<div class="thumb">
+   							<img src="${cartList.gdsThumbImg}" />
+  						</div>
+  						<div class="gdsInfo">
+   							<p>
+    							<span>상품명</span>${cartList.gdsName}<br />
+    							<span>개당 가격</span><fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice}" /> 원<br />
+    							<span>구입 수량</span>${cartList.cartStock} 개<br />
+    							<span>최종 가격</span><fmt:formatNumber pattern="###,###,###" value="${cartList.gdsPrice * cartList.cartStock}" /> 원
+   							</p>
+   
+   							<div class="delete">
+    							<button type="button" class="delete_${cartList.cartNum }_btn" data-cartNum="${cartList.cartNum}">삭제</button>
+    							
+    							<script>
+	   								$(".delete_${cartList.cartNum}_btn").click(function() {
+	   									var confirm_val = confirm("정말 삭제하시겠습니까?");
+	   									
+	   									if(confirm_val) {
+	   										var checkArr = new Array();
+	   										
+	   										checkArr.push($(this).attr("data-cartNum"));
+	   										
+	   										$.ajax({
+	   											url: "/store/deleteCart",
+	   											type: "post",
+	   											data: { chbox: checkArr },
+	   											success: function(result) {
+	   												if(result == 1) {
+	   													location.href="/store/cartList";
+	   												} else {
+	   													alert("삭제 실패");
+	   												}
+	   											}
+	   										});
+	   									}
+	   								});
+   								</script>
+   							</div>
+   							
+  						</div>   
+ 					</li>
+ 					</c:forEach>
 				</ul>
 			</section>
 		

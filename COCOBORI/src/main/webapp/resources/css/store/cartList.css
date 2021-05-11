@@ -6,10 +6,31 @@ html, body {
 #container {
     min-height:100%;    
 }
+/*
 #content ul li {
 	display: inline-block;
 	margin: 10px;
 }
+#content div.goodsName {
+	padding: 10px 0;
+	text-align: center;
+}
+#content div.goodsName a {
+	color: #000;
+}
+section#content div.goodsThumb img { 
+	width:200px; 
+	height:200px; 
+}
+section#content div.goodsName { 
+	padding:10px 0; 
+	text-align:center; 
+}
+section#content div.goodsName a { 
+	color:#000; 
+}
+
+*/
 section#content ul li img { 
 	width:250px; 
 	height:250px; 
@@ -26,6 +47,8 @@ section#content div.thumb {
 section#content div.gdsInfo { 
 	float:right; 
 	width:calc(100% - 270px);
+	margin-left: 30px;
+	margin-bottom: 30px;
 }
 #tblCart { 
 	font-size:18px; 
@@ -41,23 +64,86 @@ section#content div.gdsInfo {
 #tblCart img {
 	width: 250px;
 }
-#content div.goodsName {
-	padding: 10px 0;
-	text-align: center;
-}
-#content div.goodsName a {
-	color: #000;
-}
+
 #aside {
 	height: 100%;
 }
-.btnDelete {
-	background-color: #f3bdc2;
- 	border-radius: 7px;
- 	border: none;
- 	color: white;
+
+section#content ul li { 
+	margin:10px 0; 
+	display: flex;
+}
+section#content ul li img { 
+	width:250px; 
+	height:250px; 
+}
+section#content ul li::after { 
+	content:""; 
+	display:block; 
+	clear:both; 
+}
+section#content div.thumb { 
+	float:left; 
+	width:250px; 
+}
+section#content div.gdsInfo { 
+	float:right; 
+	width:calc(100% - 270px); 
+}
+section#content div.gdsInfo { 
+	font-size:20px; 
+	line-height:2; 
+	width: 500px;
+}
+section#content div.gdsInfo span { 
+	display:inline-block; 
+	width:100px; 
+	font-weight:bold; 
+	margin-right:10px; 
+}
+section#content div.gdsInfo .delete { 
+	text-align:right; 
+}
+section#content div.gdsInfo .delete button { 
+	font-size:17px;
+	padding:5px 10px; 
+	border:1px solid #f3bdc2; 
+	background:#f3bdc2;
+	border-radius: 5px;
+	color: white;
     font-weight: bold;
-    font-size: 14px; 
-    float: right;
-    padding-bottom: 5px;
+}
+
+.allCheck { 
+	float:left; 
+	width:200px; 
+}
+.allCheck input { 
+	width:16px; 
+	height:16px; 
+}
+.allCheck label { 
+	margin-left:10px; 
+}
+.delBtn { 
+	float:right; 
+	width:700px; 
+	text-align:right; 
+}
+.delBtn button { 
+	font-size:18px;  
+	padding:5px 10px; 
+	border:1px solid #f3bdc2; 
+	background:#f3bdc2;
+	border-radius: 5px;
+	color: white;
+    font-weight: bold;
+}
+.checkBox { 
+	float:left; 
+	width:30px; 
+}
+.checkBox input { 
+	width:16px; 
+	height:16px; 
 }
