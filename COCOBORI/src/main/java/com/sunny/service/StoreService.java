@@ -5,6 +5,9 @@ import java.util.List;
 import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.GoodsViewVO;
+import com.sunny.domain.OrderDetailVO;
+import com.sunny.domain.OrderListVO;
+import com.sunny.domain.OrderVO;
 import com.sunny.domain.ReplyListVO;
 import com.sunny.domain.ReplyVO;
 
@@ -42,4 +45,19 @@ public interface StoreService {
 	
 	//장바구니 삭제
 	public void deleteCart(CartVO cart) throws Exception;
+	
+	//주문 정보
+	public void orderInfo(OrderVO order) throws Exception;
+	
+	//주문 상세 정보
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
+	
+	//구매 후 장바구니 비우기
+	public void cartAllDelete(String userID) throws Exception;
+	
+	//주문 목록
+	public List<OrderVO> orderList(OrderVO order) throws Exception;
+	
+	//특정 주문 목록
+	public List<OrderListVO> orderView(OrderVO order) throws Exception;
 }

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.GoodsViewVO;
+import com.sunny.domain.OrderDetailVO;
+import com.sunny.domain.OrderListVO;
+import com.sunny.domain.OrderVO;
 import com.sunny.domain.ReplyListVO;
 import com.sunny.domain.ReplyVO;
 import com.sunny.persistence.StoreDAO;
@@ -124,6 +127,51 @@ public class StoreServiceImpl implements StoreService {
 		System.out.println("StoreServiceImpl:: deleteCart");
 		
 		dao.deleteCart(cart);
+	}
+	
+	//주문 정보
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreServiceImpl:: orderInfo");
+		
+		dao.orderInfo(order);
+	}
+	
+	//주문 상세 정보
+	@Override
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreServiceImpl:: orderInfo_Details");
+		
+		dao.orderInfo_Details(orderDetail);
+	}
+	
+	//구매 후 장바구니 비우기
+	@Override
+	public void cartAllDelete(String userID) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreServiceImpl:: cartAllDelete");
+		
+		dao.cartAllDelete(userID);
+	}
+	
+	//주문 목록
+	@Override
+	public List<OrderVO> orderList(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreServiceImpl:: orderList");
+		
+		return dao.orderList(order);
+	}
+	
+	//특정 주문 목록
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreServiceImpl:: orderView");
+		
+		return dao.orderView(order);
 	}
 
 }

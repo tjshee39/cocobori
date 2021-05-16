@@ -1,5 +1,7 @@
 package com.sunny.cocobori;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +20,9 @@ import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.MemberVO;
+import com.sunny.domain.OrderDetailVO;
+import com.sunny.domain.OrderListVO;
+import com.sunny.domain.OrderVO;
 import com.sunny.domain.ReplyListVO;
 import com.sunny.domain.ReplyVO;
 import com.sunny.service.StoreService;
@@ -221,4 +226,73 @@ public class StoreController {
 		return result;
 	}
 	
+	//주문
+	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
+	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreController:: order");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");  
+		String userID = member.getUserID();
+		
+		//연, 월, 일 추출
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		 
+		for(int i = 1; i <= 6; i ++) {
+			//6자리 랜덤 숫자
+			subNum += (int)(Math.random() * 10);
+		}
+		 
+		//날짜_랜덤숫자:: 주문 고유번호
+		String orderID = ymd + "_" + subNum;
+		 
+		order.setOrderID(orderID);
+		order.setUserID(userID);
+		  
+		service.orderInfo(order);
+		 
+		orderDetail.setOrderID(orderID);   
+		service.orderInfo_Details(orderDetail);
+		 
+		service.cartAllDelete(userID);
+		 
+		return "redirect:/store/orderList"; 
+	}
+	
+	//주문 목록
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	public void getOrderList(HttpSession session, OrderVO order, Model model) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreController:: getOrderList(orderList)");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String userID = member.getUserID();
+		
+		order.setUserID(userID);
+		
+		List<OrderVO> orderList = service.orderList(order);
+		
+		model.addAttribute("orderList", orderList);
+	}
+	
+	//주문 상세 목록
+	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
+	public void getOrderList(HttpSession session, @RequestParam("n") String orderID, OrderVO order, Model model) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreController:: getOrderList(orderView");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String userID = member.getUserID();
+		
+		order.setUserID(userID);
+		order.setOrderID(orderID);
+		
+		List<OrderListVO> orderView = service.orderView(order);
+		
+		model.addAttribute("orderView", orderView);
+	}
 }

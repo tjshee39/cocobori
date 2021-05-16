@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.GoodsViewVO;
+import com.sunny.domain.OrderDetailVO;
+import com.sunny.domain.OrderListVO;
+import com.sunny.domain.OrderVO;
 import com.sunny.domain.ReplyListVO;
 import com.sunny.domain.ReplyVO;
 
@@ -136,5 +139,48 @@ public class StoreDAOImpl implements StoreDAO{
 		sql.delete(namespace + ".deleteCart", cart);
 	}
 	
+	//주문 정보
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreDAOImpl:: orderInfo");
+		
+		sql.insert(namespace + ".orderInfo", order);
+	}
+	
+	//주문 상세 정보
+	@Override
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreDAOImpl:: orderInfo_Details");
+		
+		sql.insert(namespace + ".orderInfo_Details", orderDetail);
+	}
+	
+	//구매 후 장바구니 비우기
+	@Override
+	public void cartAllDelete(String userID) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreDAOImpl:: cartAllDelete");
+		
+		sql.delete(namespace + ".cartAllDelete", userID);
+	}
+	
+	//주문 목록
+	@Override
+	public List<OrderVO> orderList(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreDAOImpl:: orderList");
+		
+		return sql.selectList(namespace + ".orderList", order);
+	}
 
+	//특정 주문 목록
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("StoreDAOImpl:: orderView");
+		
+		return sql.selectList(namespace + ".orderView", order);
+	}
 }

@@ -31,6 +31,7 @@
 					<a href="/member/logOut" class="menu_right">로그아웃</a>&nbsp;&nbsp;|&nbsp;
 				</c:if>
 				<a href="/store/cartList" class="menu_right">장바구니</a>&nbsp;&nbsp;|&nbsp;
+				<a href="/store/orderList" class="menu_right">주문목록</a>&nbsp;&nbsp;|&nbsp;
 				<a href="/mypage/memberInfo" class="menu_right">마이페이지</a>
 			</div>
 		</div>
