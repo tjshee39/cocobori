@@ -51,6 +51,9 @@
 					<a href="/admin/goodsList">상품 목록</a>
 				</li>
 				<li>
+					<a href="/admin/orderList">주문 목록</a>
+				</li>
+				<li>
 					<a href="#">회원 목록</a>
 				</li>
 			</ul>

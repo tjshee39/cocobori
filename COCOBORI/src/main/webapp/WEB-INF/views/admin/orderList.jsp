@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>코코보리</title>
-<link rel="stylesheet" href="/resources/css/store/orderList.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/admin/orderList.css" type="text/css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
@@ -22,18 +22,19 @@
 		<div id="container_box">
 			
 			<section id="content">
-			
-				<ul class = "orderList">
+				<ul class="orderList">
 					<c:forEach items="${orderList }" var="orderList">
-						<li>
-							<div>
-								<p><span>주문번호</span><a href="/store/orderView?n=${orderList.orderID}" id="orderID">${orderList.orderID}</a></p>
-   								<p><span>수령인</span>${orderList.orderRec}</p>
-   								<p><span>주소</span>(${orderList.userAddrZip}) ${orderList.userAddr} ${orderList.userAddrDetail}</p>
-   								<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.amount}" /> 원</p>
-   								<p><span>상태</span>${orderList.delivery}</p>
-  							</div>
-						</li>
+						 <li>
+						 	<div>
+						 		<p><span>주문번호</span><a href="/admin/orderView?n=${orderList.orderID}" id="orderID">${orderList.orderID}</a></p>
+						 		<p><span>주문자</span>${orderList.userID}</p>
+						 		<p><span>수령인</span>${orderList.orderRec}</p>
+						 		<p><span>주소</span>(${orderList.userAddrZip}) ${orderList.userAddr} ${orderList.userAddrDetail}</p>
+						 		<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.amount}" /> 원</p> 
+						 		<p><span>상태</span>${orderList.delivery}</p>
+						 		
+						 	</div>
+						 </li>
 					</c:forEach>				
 				</ul>
 			</section>

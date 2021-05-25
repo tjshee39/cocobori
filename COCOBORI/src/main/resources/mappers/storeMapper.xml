@@ -115,19 +115,22 @@
 	
 	<!-- 특정 회원 주문 목록 -->
 	<select id="orderList" resultType = "com.sunny.domain.OrderVO">
-		select orderID, userID, orderRec, userAddr, userAddrDetail, userAddrZip, orderPhon, amount, orderDate
-			from tbl_order
-			where userID = #{userID}
+		select orderID, userID, orderRec, userAddr, userAddrDetail, userAddrZip, 
+				orderPhon, amount, orderDate, delivery
+					from tbl_order
+					where userID = #{userID}
 	</select>
 	
 	<!-- 특정 주문 목록 -->
 	<select id = "orderView" resultType = "com.sunny.domain.OrderListVO">
 		 select o.orderID, o.userID, o.orderRec, o.userAddrZip, o.userAddr, o.userAddrDetail, 
-		 		o.orderPhon, o.amount, o.orderDate, d.orderDetailsNum, d.gdsNum, d.cartStock,
-	     		g.gdsName, g.gdsThumbImg, g.gdsPrice
+		 		o.orderPhon, o.amount, o.orderDate, o.delivery, d.orderDetailsNum, 
+		 		d.gdsNum, d.cartStock, g.gdsName, g.gdsThumbImg, g.gdsPrice
 	 				from tbl_order o inner join tbl_order_details d on o.orderID = d.orderID
 	         			 inner join tbl_goods g on d.gdsNum = g.gdsNum
 	     			where o.userID = #{userID} and o.orderID = #{orderID}
 	</select>
+	
+	
 	
 </mapper>

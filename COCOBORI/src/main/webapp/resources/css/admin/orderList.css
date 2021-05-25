@@ -1,0 +1,57 @@
+@charset "EUC-KR";
+
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
+
+/*
+#content ul li {
+	display: inline-block;
+	margin: 10px;
+}
+#content div.goodsThumb img {
+	width: 200px;
+	height: 200px;
+}
+#content div.goodsName {
+	padding: 10px 0;
+	text-align: center;
+}
+#content div.goodsName a {
+	color: #000;
+}
+#aside {
+	height: 100%;
+}
+*/
+
+ div#container_box ul li { 
+ 	border:5px solid #eee; 
+ 	padding:10px 20px; 
+ 	margin-bottom:20px;
+ 	display: flow-root; 
+ 	width:800px;
+ }
+ .orderList {
+ 	display: flow-root;
+ }
+ div#container_box .orderList span { 
+ 	font-size:20px; 
+ 	font-weight:bold; 
+ 	display:inline-block; 
+ 	width:90px; 
+ 	margin-right:10px; 
+ }
+ section#content .orderList span { 
+	font-size:18px; 
+	font-weight:bold; 
+	display:inline-block; 
+	width:90px; 
+	margin-right:10px; 
+}
+#orderID {
+	color: #ff0080;
+}

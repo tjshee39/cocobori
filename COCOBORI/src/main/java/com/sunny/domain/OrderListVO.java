@@ -9,8 +9,8 @@ public class OrderListVO {
  *  orderDetailsNum		int				not null(PK),
  *  orderID				varchar(50)		not null(FK),
  * 	gdsNum				int				not null,
- * 	cartStock			int				not null
- *  .
+ * 	cartStock			int				not null,
+ *  delivery			varchar(20)		default 배송준비
  *  .
  *  .
  */
@@ -24,7 +24,14 @@ public class OrderListVO {
 	private String orderPhon;
 	private int amount;
 	private Date orderDate;
+	private String delivery;
 	
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	private int orderDetailNum;
 	private int gdsNum;
 	private int cartStock;

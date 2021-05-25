@@ -13,6 +13,7 @@ public class OrderVO {
  *	orderPhon		varchar(30)		not null,
  *	amount			int				not null,
  *	orderDate		datetime		dafault CURRENT_TIMESTAMP,
+ *	delivery		varchar(20)		default 배송준비
  */
 
 	
@@ -25,8 +26,15 @@ public class OrderVO {
 	private String orderPhon;
 	private int amount;
 	private Date orderDate;
+	private String delivery;
 	
 	
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	public String getOrderID() {
 		return orderID;
 	}

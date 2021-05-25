@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sunny.domain.CategoryVO;
 import com.sunny.domain.GoodsVO;
 import com.sunny.domain.GoodsViewVO;
+import com.sunny.domain.OrderListVO;
+import com.sunny.domain.OrderVO;
 import com.sunny.service.AdminService;
 import com.sunny.utils.UploadFileUtils;
 
@@ -166,5 +168,39 @@ public class AdminController {
 		adminService.goodsDelete(gdsNum);
 		
 		return "redirect:/admin/goodsList";
+	}
+	
+	//주문 목록
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	public void getOrderList(Model model) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminController:: getOrderList");
+		
+		List<OrderVO> orderList = adminService.orderList();
+		
+		model.addAttribute("orderList", orderList);
+	}
+	
+	//주문 상세 목록
+	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
+	public void getOrderList(@RequestParam("n") String orderID, OrderVO order, Model model) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminController:: getOrderList_orderView");
+		
+		order.setOrderID(orderID);
+		List<OrderListVO> orderView = adminService.orderView(order);
+		
+		model.addAttribute("orderView", orderView);
+	}
+	
+	//주문 상세 목록 - 상태 변경
+	@RequestMapping(value = "/orderView", method = RequestMethod.POST)
+	public String delivery(OrderVO order) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminController:: delivery");
+		
+		adminService.delivery(order);
+		
+		return "redirect:/admin/orderView?n=" + order.getOrderID();
 	}
 }
