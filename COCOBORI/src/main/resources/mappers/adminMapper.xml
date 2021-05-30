@@ -99,5 +99,19 @@
 	 		set delivery = #{delivery}
 	 		where orderID = #{orderID}
 	 </update>
+	 
+	 <!-- 상품 수량 조절 -->
+	 <update id="changeStock">
+	 	update tbl_goods
+	 		set gdsStock = gdsStock - #{gdsStock}
+	 		where gdsNum = #{gdsNum}
+	 </update>
+	 
+	 <!-- 상품 수량 조절 sub -->
+	 <select id="changeStock_sub" resultType="com.sunny.domain.OrderDetailVO">
+	 	select orderID, gdsNum, cartStock
+	 		from tbl_order_details
+	 		where orderID = #{orderID}
+	 </select>
 
 </mapper>

@@ -30,7 +30,7 @@
 					   		<p><span>수령인</span>${orderView.orderRec}</p>
 					   		<p><span>주소</span>(${orderView.userAddr}) ${orderView.userAddr} ${orderView.userAddrDetail}</p>
 					   		<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.amount}" /> 원</p>
-					   		<p><span>상태</span>${orderView.orderRec}</p>
+					   		<p><span>상태</span>${orderView.delivery}</p>
 					   		
 					   		<div class="deliveryChange">
 							 		<form role="form" method="post" class="deliveryForm">	 

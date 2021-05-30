@@ -81,73 +81,80 @@
   									<p class="gdsStock">
    										<span>잔여 수량 </span><fmt:formatNumber pattern="###,###,###" value="${view.gdsStock}" /> EA
   									</p>
-  									<p class="cartStock">
-   										<span>구매 수량 </span>
-   										<button type="button" class="minus">-</button>
-   										<input type="number" class = "numBox" cmin="1" max="${view.gdsStock}" value="1" />
-   										<button type="button" class="plus">+</button>   									
-   										
-   										<script>
-   											$(".plus").click(function() {
-   												var num = $(".numBox").val();
-   												var plusNum = Number(num) + 1;
-   												
-   												if(plusNum >= ${view.gdsStock}) {
-   													$(".numBox").val(num);
-   												} else {
-   													$(".numBox").val(plusNum);
-   												}
-   											});
-   											
-   											$(".minus").click(function() {
-   												var num = $(".numBox").val();
-   												var minusNum = Number(num) - 1;
-   												
-   												if(minusNum <= 0) {
-   													$(".numBox").val(num);
-   												} else {
-   													$(".numBox").val(minusNum);
-   												}
-   											});
-   										</script>  
-  									</p>
-  									<p class="addToCart">
-   										<button type="button" id="btnCart">
-   											<div id="btnCartImg">
-   												<img src="/resources/images/store_cart.png" id="btnCartImgSize">
-   											</div>
-   										</button>
-   										
-   										<script>
-   											$("#btnCart").click(function() {
-   												var gdsNum = $("#gdsNum").val();
-   												var cartStock = $(".numBox").val();
-   												
-   												var data = {
-   														gdsNum: gdsNum,
-   														cartStock: cartStock
-   												};
-   												
-   												$.ajax({
-   													url: "/store/view/addCart",
-   													type: "post",
-   													data: data,
-   													success: function(result) {
-   														if(result == 1) {
-   															alert("장바구니에 추가하였습니다.")
-   	   														$(".numBox").val("1");
-   														} else {
-   															alert("로그인 후 이용 가능합니다.")
-   															$(".numBox").val("1");
-   														}
-   													},
-   													error: function() {
-   														alert("장바구니에 담지 못하였습니다.")
-   													}
-   												});
-   											});
-   										</script>
-  									</p>
+  									
+  									<c:if test="${view.gdsStock != 0 }">
+	  									<p class="cartStock">
+	   										<span>구매 수량 </span>
+	   										<button type="button" class="minus">-</button>
+	   										<input type="number" class = "numBox" cmin="1" max="${view.gdsStock}" value="1" />
+	   										<button type="button" class="plus">+</button>   									
+	   										
+	   										<script>
+	   											$(".plus").click(function() {
+	   												var num = $(".numBox").val();
+	   												var plusNum = Number(num) + 1;
+	   												
+	   												if(plusNum > ${view.gdsStock}) {
+	   													$(".numBox").val(num);
+	   												} else {
+	   													$(".numBox").val(plusNum);
+	   												}
+	   											});
+	   											
+	   											$(".minus").click(function() {
+	   												var num = $(".numBox").val();
+	   												var minusNum = Number(num) - 1;
+	   												
+	   												if(minusNum <= 0) {
+	   													$(".numBox").val(num);
+	   												} else {
+	   													$(".numBox").val(minusNum);
+	   												}
+	   											});
+	   										</script>  
+	  									</p>
+	  									<p class="addToCart">
+	   										<button type="button" id="btnCart">
+	   											<div id="btnCartImg">
+	   												<img src="/resources/images/store_cart.png" id="btnCartImgSize">
+	   											</div>
+	   										</button>
+	   										
+	   										<script>
+	   											$("#btnCart").click(function() {
+	   												var gdsNum = $("#gdsNum").val();
+	   												var cartStock = $(".numBox").val();
+	   												
+	   												var data = {
+	   														gdsNum: gdsNum,
+	   														cartStock: cartStock
+	   												};
+	   												
+	   												$.ajax({
+	   													url: "/store/view/addCart",
+	   													type: "post",
+	   													data: data,
+	   													success: function(result) {
+	   														if(result == 1) {
+	   															alert("장바구니에 추가하였습니다.")
+	   	   														$(".numBox").val("1");
+	   														} else {
+	   															alert("로그인 후 이용 가능합니다.")
+	   															$(".numBox").val("1");
+	   														}
+	   													},
+	   													error: function() {
+	   														alert("장바구니에 담지 못하였습니다.")
+	   													}
+	   												});
+	   											});
+	   										</script>
+	  									</p>
+  									</c:if>
+  									
+  									<c:if test="${view.gdsStock == 0 }">
+  										<p id="sold_out">상품 수량이 부족합니다.</p>
+  									</c:if>
  								</div>
  							</td>
  						</tr>

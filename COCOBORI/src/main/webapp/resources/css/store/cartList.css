@@ -31,6 +31,10 @@ section#content div.goodsName a {
 }
 
 */
+
+#content {
+	display: flow-root;
+}
 section#content ul li img { 
 	width:250px; 
 	height:250px; 
@@ -147,6 +151,9 @@ section#content div.gdsInfo .delete button {
 	width:16px; 
 	height:16px; 
 }
+.form_info {
+	display: flow-root;
+}
 .listResult { 
 	padding:20px; 
 	background:#eee;
@@ -212,3 +219,11 @@ section#content div.gdsInfo .delete button {
     color: white;
     font-weight: bold;
 }
+.orderInfo .inputArea #sample2_address { 
+	width:230px; 
+	margin: 10px 0;
+}
+.orderInfo .inputArea #sample2_detailAddress { 
+	width:280px; 
+}
+

@@ -193,14 +193,27 @@ public class AdminController {
 		model.addAttribute("orderView", orderView);
 	}
 	
-	//주문 상세 목록 - 상태 변경
+	//주문 상세 목록 - 상태 변경, 상품 수량 조절
 	@RequestMapping(value = "/orderView", method = RequestMethod.POST)
-	public String delivery(OrderVO order) throws Exception {
+	public String delivery(@RequestParam("delivery") String delivery, OrderVO order) throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminController:: delivery");
 		
 		adminService.delivery(order);
 		
+		List<OrderListVO> orderView = adminService.orderView(order);
+		GoodsVO goods = new GoodsVO();
+		
+		if(delivery.equals("배송중")) {
+			for(OrderListVO i : orderView) {
+				goods.setGdsNum(i.getGdsNum());
+				goods.setGdsStock(i.getCartStock());
+				adminService.changeStock(goods);
+			}
+		}
+		
+		
 		return "redirect:/admin/orderView?n=" + order.getOrderID();
 	}
+	
 }
