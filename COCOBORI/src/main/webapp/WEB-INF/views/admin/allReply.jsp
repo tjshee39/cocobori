@@ -36,7 +36,7 @@
    							<div class="replyControll">
    								<form role="form" method="post">
    									<input type="hidden" name="repNum" value="${reply.repNum }" />
-									<button type="submit" class="delete_${reply.repNum}_btn">삭제</button>
+									<button type="submit" class="delete_${reply.repNum}_btn" id="btn_delete">삭제</button>
    								</form>
 							</div>
   						</li>     

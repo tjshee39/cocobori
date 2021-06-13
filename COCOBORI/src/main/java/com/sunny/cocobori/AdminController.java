@@ -231,11 +231,11 @@ public class AdminController {
 	
 	//후기 삭제
 	@RequestMapping(value="/allReply", method = RequestMethod.POST)
-	public String postAllReply(ReplyVO reply) throws Exception {
+	public String postAllReply(@RequestParam("repNum") int repNum) throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminController:: postAllReply");
 			
-		adminService.deleteReply(reply.getRepNum());
+		adminService.deleteReply(repNum);
 		
 		return "redirect:/admin/allReply";
 	}

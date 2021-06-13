@@ -124,7 +124,7 @@
 	 
 	 <!-- 후기 삭제 -->
 	 <delete id="deleteReply">
-	 	delete tbl_reply
+	 	delete from tbl_reply
 	 		where repNum = #{repNum}
 	 </delete>
 
