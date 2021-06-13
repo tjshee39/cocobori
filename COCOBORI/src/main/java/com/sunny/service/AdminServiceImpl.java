@@ -11,6 +11,7 @@ import com.sunny.domain.GoodsVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderListVO;
 import com.sunny.domain.OrderVO;
+import com.sunny.domain.ReplyListVO;
 import com.sunny.persistence.AdminDAO;
 
 @Service
@@ -107,5 +108,23 @@ public class AdminServiceImpl implements AdminService {
 		System.out.println("AdminServiceImpl:: changeStock");
 		
 		dao.changeStock(goods);
+	}
+	
+	//모든 상품 후기 출력
+	@Override
+	public List<ReplyListVO> allReply() throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminServiceImpl:: allReply");
+		
+		return dao.allReply();
+	}
+	
+	//후기 삭제
+	@Override
+	public void deleteReply(int repNum) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminServiceImpl:: deleteReply");
+		
+		dao.deleteReply(repNum);
 	}
 }

@@ -54,6 +54,9 @@
 					<a href="/admin/orderList">주문 목록</a>
 				</li>
 				<li>
+					<a href="/admin/allReply">상품 후기</a>
+				</li>
+				<li>
 					<a href="#">회원 목록</a>
 				</li>
 			</ul>

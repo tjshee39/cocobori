@@ -12,6 +12,7 @@ import com.sunny.domain.GoodsVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderListVO;
 import com.sunny.domain.OrderVO;
+import com.sunny.domain.ReplyListVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -110,6 +111,24 @@ public class AdminDAOImpl implements AdminDAO {
 		System.out.println("AdminDAOImpl:: changeStock");
 		
 		sql.update(namespace + ".changeStock", goods);
+	}
+	
+	//모든 상품 후기 출력
+	@Override
+	public List<ReplyListVO> allReply() throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminDAOImpl:: allReply");
+		
+		return sql.selectList(namespace + ".allReply");
+	}
+	
+	//후기 삭제
+	@Override
+	public void deleteReply(int repNum) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminDAOImpl:: deleteReply");
+		
+		sql.delete(namespace + ".deleteReply", repNum);
 	}
 
 }

@@ -7,6 +7,7 @@ import com.sunny.domain.GoodsVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderListVO;
 import com.sunny.domain.OrderVO;
+import com.sunny.domain.ReplyListVO;
 
 public interface AdminService {
 	
@@ -39,5 +40,11 @@ public interface AdminService {
 	
 	//상품 수량 조절
 	public void changeStock(GoodsVO goods) throws Exception;
+	
+	//모든 상품 후기 출력
+	public List<ReplyListVO> allReply() throws Exception;
+	
+	//후기 삭제
+	public void deleteReply(int repNum) throws Exception;
 
 }

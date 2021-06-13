@@ -12,11 +12,8 @@
 </head>
 <body>
 
-	<%@include file ="/WEB-INF/views/common/header.jsp" %>
+	<%@include file ="/WEB-INF/views/common/AdminHeader.jsp" %>
 	<br>
-	<div id="aside">
-	<%@include file ="/WEB-INF/views/common/storeAside.jsp" %>
-	</div>
 	
 	<section id="container">
 		<div id="container_box">

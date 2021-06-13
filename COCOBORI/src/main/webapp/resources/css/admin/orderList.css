@@ -7,36 +7,16 @@ html, body {
     min-height:100%;    
 }
 
-/*
-#content ul li {
-	display: inline-block;
-	margin: 10px;
-}
-#content div.goodsThumb img {
-	width: 200px;
-	height: 200px;
-}
-#content div.goodsName {
-	padding: 10px 0;
-	text-align: center;
-}
-#content div.goodsName a {
-	color: #000;
-}
-#aside {
-	height: 100%;
-}
-*/
-
  div#container_box ul li { 
  	border:5px solid #eee; 
  	padding:10px 20px; 
  	margin-bottom:20px;
  	display: flow-root; 
- 	width:800px;
  }
  .orderList {
- 	display: flow-root;
+    margin: auto;
+    width: 1000px;
+    list-style: none;
  }
  div#container_box .orderList span { 
  	font-size:20px; 

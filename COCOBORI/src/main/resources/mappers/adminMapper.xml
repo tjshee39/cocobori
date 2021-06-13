@@ -113,5 +113,19 @@
 	 		from tbl_order_details
 	 		where orderID = #{orderID}
 	 </select>
+	 
+	 <!-- 모든 상품 후기 출력 -->
+	 <select id="allReply" resultType="com.sunny.domain.ReplyListVO">
+	 	select r.gdsNum, r.userID, r.repNum, r.repCon, r.repDate, m.userName
+ 			from tbl_reply r
+      			inner join tbl_member m
+         			on r.userID = m.userID
+	 </select>
+	 
+	 <!-- 후기 삭제 -->
+	 <delete id="deleteReply">
+	 	delete tbl_reply
+	 		where repNum = #{repNum}
+	 </delete>
 
 </mapper>

@@ -20,6 +20,8 @@ import com.sunny.domain.GoodsVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderListVO;
 import com.sunny.domain.OrderVO;
+import com.sunny.domain.ReplyListVO;
+import com.sunny.domain.ReplyVO;
 import com.sunny.service.AdminService;
 import com.sunny.utils.UploadFileUtils;
 
@@ -214,6 +216,28 @@ public class AdminController {
 		
 		
 		return "redirect:/admin/orderView?n=" + order.getOrderID();
+	}
+	
+	//모든 상품 후기 출력
+	@RequestMapping(value = "/allReply", method = RequestMethod.GET)
+	public void getAllReply(Model model) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminController:: getAllReply");
+		
+		List<ReplyListVO> reply = adminService.allReply();
+		
+		model.addAttribute("reply", reply);
+	}
+	
+	//후기 삭제
+	@RequestMapping(value="/allReply", method = RequestMethod.POST)
+	public String postAllReply(ReplyVO reply) throws Exception {
+		System.out.println("========================================");
+		System.out.println("AdminController:: postAllReply");
+			
+		adminService.deleteReply(reply.getRepNum());
+		
+		return "redirect:/admin/allReply";
 	}
 	
 }

@@ -1,0 +1,45 @@
+@charset "EUC-KR";
+
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
+
+#container_box ul {
+	margin: auto;
+	width: 1000px;
+}
+#container_box ul li { 
+	margin-bottom:20px; 
+	border:5px solid #eee; 
+	list-style: none;
+}
+.replyInfo { 
+	padding:10px; 
+	font-size:18px; 
+}
+.replyInfo span { 
+	font-size:20px; 
+	font-weight:bold; 
+	margin-right:20px; 
+}
+.replyContent { 
+	padding:10px;
+	background: #f8f8f8;  
+}
+.replyControll {
+	background: #f8f8f8; 
+	text-align: right;
+	padding: 10px;
+}
+.replyControll button{
+	border-radius: 4px;
+    background-color: #f3bdc2;
+    border-width: 1px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    font-size: 16px;
+}
