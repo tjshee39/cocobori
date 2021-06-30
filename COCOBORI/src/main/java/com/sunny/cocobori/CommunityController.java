@@ -109,7 +109,7 @@ public class CommunityController {
 		// 업로드 경로 
 		String ckUploadPath = "C:\\Users\\PPC028\\Documents\\workspace-spring-tool-suite-4-4.11.0.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\cocobori\\WEB-INF\\views\\images";
 			 
-		OutputStream out = new FileOutputStream(new File(ckUploadPath + fileName)); 
+		OutputStream out = new FileOutputStream(new File(ckUploadPath + fileName));
 			
 		//서버로 업로드
 		//write메소드의 매개값으로 파일의 총 바이트를 매개값으로 준다.
