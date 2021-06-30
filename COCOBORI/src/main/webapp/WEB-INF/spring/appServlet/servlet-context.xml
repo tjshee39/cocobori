@@ -29,6 +29,8 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
+	<resources location="/resources/ckUpload/" mapping="/ckUpload/**"></resources>
+	
 	<!-- 일반 파일 업로드 경로 -->
 	<resources mapping="/imgUpload/**" location="/resources/imgUpload/" />
 	

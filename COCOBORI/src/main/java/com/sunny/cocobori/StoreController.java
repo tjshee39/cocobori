@@ -39,18 +39,18 @@ public class StoreController {
 	@Inject
 	StoreService service;
 	
-	//½ºÅä¾î
+	//ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/store", method = RequestMethod.GET)
 	public void getStore(Model model) throws Exception {
 		System.out.println("========================================");
-		System.out.println("MainController:: getStore");
+		System.out.println("StoreController:: getStore");
 		
 		List<GoodsViewVO> list= service.allList();
 		
 		model.addAttribute("list", list);
 	}
 	
-	//Ä«Å×°í¸®º° »óÇ° ¸ñ·Ï
+	//Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void getList(@RequestParam("c") int cateCode, @RequestParam("l") int level, Model model) throws Exception {
 		System.out.println("========================================");
@@ -62,7 +62,7 @@ public class StoreController {
 		model.addAttribute("list", list);
 	}
 	
-	//»óÇ° Á¶È¸
+	//ï¿½ï¿½Ç° ï¿½ï¿½È¸
 	@RequestMapping(value="/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		System.out.println("========================================");
@@ -79,7 +79,7 @@ public class StoreController {
 	}
 	
 	/*
-	//»óÇ° Á¶È¸ > ÈÄ±â ÀÛ¼º
+	//ï¿½ï¿½Ç° ï¿½ï¿½È¸ > ï¿½Ä±ï¿½ ï¿½Û¼ï¿½
 	@RequestMapping(value = "/view", method=RequestMethod.POST)
 	public String registReply(ReplyVO reply, HttpSession session) throws Exception {
 		System.out.println("========================================");
@@ -94,7 +94,7 @@ public class StoreController {
 	}
 	*/
 	
-	//»óÇ° ÈÄ±â ÀÛ¼º
+	//ìƒí’ˆ í›„ê¸° ì‘ì„±
 	@ResponseBody
 	@RequestMapping(value="/view/registReply", method = RequestMethod.POST)
 	public void registReply(ReplyVO reply, HttpSession session) throws Exception {
@@ -107,7 +107,7 @@ public class StoreController {
 		service.registReply(reply);
 	}
 	
-	//»óÇ° ÈÄ±â ¸ñ·Ï
+	//ï¿½ï¿½Ç° ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value = "/view/replyList", method = RequestMethod.GET)
 	public List<ReplyListVO> getReplyList(@RequestParam("n") int gdsNum) throws Exception {
@@ -119,7 +119,7 @@ public class StoreController {
 		return reply;
 	}
 	
-	//»óÇ° ÈÄ±â »èÁ¦
+	//ï¿½ï¿½Ç° ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value = "/view/deleteReply", method = RequestMethod.POST)
 	public int getReplyList(ReplyVO reply, HttpSession session) throws Exception {
@@ -128,14 +128,14 @@ public class StoreController {
 		
 		int result = 0;
 		
-		//ÇöÀç ¼¼¼Ç °¡Á®¿È
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		System.out.println("member: " + member);
-		//userID È®ÀÎ Äõ¸®°á°ú °¡Á®¿È
+		//userID È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String userID = service.idCheck(reply.getRepNum());
 		System.out.println("userID: " + userID);
 		
-		//¹®ÀÚ¿­ ºñ±³ equals
+		//ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ equals
 		if(member.getUserID().equals(userID)) {
 			reply.setUserID(member.getUserID());
 			service.deleteReply(reply);
@@ -146,7 +146,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//»óÇ° ÈÄ±â ¼öÁ¤
+	//ï¿½ï¿½Ç° ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value = "/view/modifyReply", method = RequestMethod.POST)
 	public int modifyReply(ReplyVO reply, HttpSession session) throws Exception {
@@ -166,7 +166,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//Àå¹Ù±¸´Ï ´ã±â
+	//ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value = "view/addCart", method = RequestMethod.POST)
 	public int addCart(CartVO cart, HttpSession session) throws Exception {
@@ -186,7 +186,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//Àå¹Ù±¸´Ï ¸ñ·Ï
+	//ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/cartList", method = RequestMethod.GET)
 	public void getCartList(HttpSession session, Model model) throws Exception {
 		System.out.println("========================================");
@@ -200,7 +200,7 @@ public class StoreController {
 		model.addAttribute("cartList", cartList);
 	}
 	
-	//Àå¹Ù±¸´Ï »èÁ¦
+	//ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
 	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
@@ -226,7 +226,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//ÁÖ¹®
+	//ï¿½Ö¹ï¿½
 	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
 	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception {
 		System.out.println("========================================");
@@ -235,7 +235,7 @@ public class StoreController {
 		MemberVO member = (MemberVO)session.getAttribute("member");  
 		String userID = member.getUserID();
 		
-		//¿¬, ¿ù, ÀÏ ÃßÃâ
+		//ï¿½ï¿½, ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -243,11 +243,11 @@ public class StoreController {
 		String subNum = "";
 		 
 		for(int i = 1; i <= 6; i ++) {
-			//6ÀÚ¸® ·£´ı ¼ıÀÚ
+			//6ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			subNum += (int)(Math.random() * 10);
 		}
 		 
-		//³¯Â¥_·£´ı¼ıÀÚ:: ÁÖ¹® °íÀ¯¹øÈ£
+		//ï¿½ï¿½Â¥_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:: ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		String orderID = ymd + "_" + subNum;
 		 
 		order.setOrderID(orderID);
@@ -263,7 +263,7 @@ public class StoreController {
 		return "redirect:/store/orderList"; 
 	}
 	
-	//ÁÖ¹® ¸ñ·Ï
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
 	public void getOrderList(HttpSession session, OrderVO order, Model model) throws Exception {
 		System.out.println("========================================");
@@ -279,7 +279,7 @@ public class StoreController {
 		model.addAttribute("orderList", orderList);
 	}
 	
-	//ÁÖ¹® »ó¼¼ ¸ñ·Ï
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
 	public void getOrderList(HttpSession session, @RequestParam("n") String orderID, OrderVO order, Model model) throws Exception {
 		System.out.println("========================================");

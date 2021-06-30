@@ -42,14 +42,14 @@ public class AdminController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
-	//°ü¸®ÀÚ È­¸é
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½
 	@RequestMapping(value = "/AdminMain", method = RequestMethod.GET)
 	public void getAdminMain() throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminController:: getAdminMain");
 	}
 	
-	//»óÇ° µî·Ï
+	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public void getRegister(Model model) throws Exception {
 		System.out.println("========================================");
@@ -60,7 +60,7 @@ public class AdminController {
 		model.addAttribute("category", JSONArray.fromObject(category));
 	}
 	
-	//»óÇ°µî·Ï
+	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String postRegister(GoodsVO vo, MultipartFile file) throws Exception {
 		System.out.println("========================================");
@@ -70,17 +70,17 @@ public class AdminController {
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 		
-		//ÆÄÀÏ ÀÎÇ²¹Ú½º¿¡ Ã·ºÎµÈ ÆÄÀÏÀÌ ¾ø´Ù¸é
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç²ï¿½Ú½ï¿½ï¿½ï¿½ Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			
-			//gdsImg: ¿øº»ÆÄÀÏ °æ·Î + ÆÄÀÏ¸í
+			//gdsImg: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½Ï¸ï¿½
 			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			//gdsThumbImg: ½æ³×ÀÏ °æ·Î + ÆÄÀÏ¸í
+			//gdsThumbImg: ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½Ï¸ï¿½
 			vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 			
 		} else {
-			//Ã·ºÎµÈ ÆÄÀÏÀÌ ¾øÀ¸¸é none.pngÆÄÀÏÀ» ´ë½Å Ãâ·Â
+			//Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ none.pngï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			fileName = File.separator + "images" + File.separator + "none_image.png";
 			
 			vo.setGdsImg(fileName);
@@ -92,7 +92,7 @@ public class AdminController {
 		return "redirect:/admin/goodsList";
 	}
 	
-	//»óÇ°¸ñ·Ï
+	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
 	@RequestMapping(value="/goodsList", method = RequestMethod.GET)
 	public void getGoodsList(Model model) throws Exception {
 		System.out.println("========================================");
@@ -103,7 +103,7 @@ public class AdminController {
 		model.addAttribute("list", list);
 	}
 	
-	//»óÇ°Á¶È¸(Ä«Å×°í¸® Á¶ÀÎ)
+	//ï¿½ï¿½Ç°ï¿½ï¿½È¸(Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	@RequestMapping(value="/goodsView", method = RequestMethod.GET)
 	public void getGoodsView(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		System.out.println("========================================");
@@ -115,7 +115,7 @@ public class AdminController {
 	}
 	
 	
-	//»óÇ° ¼öÁ¤
+	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/goodsModify", method = RequestMethod.GET)
 	public void getGoodsModify(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		System.out.println("========================================");
@@ -130,27 +130,27 @@ public class AdminController {
 		model.addAttribute("category", JSONArray.fromObject(category));
 	}
 	
-	//»óÇ° ¼öÁ¤
+	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/goodsModify", method = RequestMethod.POST)
 	public String postGoodsModify(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminController:: postGoodsModify");
 		
-		//»õ·Î¿î ÆÄÀÏÀÌ µî·ÏµÇ¾ú´ÂÁö È®ÀÎ
+		//ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-			//±âÁ¸ ÆÄÀÏ »èÁ¦
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			new File(uploadPath + req.getParameter("gdsImg")).delete();
 			new File(uploadPath + req.getParameter("gdsThumbImg")).delete();
 			
-			//»õ·Î Ã·ºÎÇÑ ÆÄÀÏ µî·Ï
+			//ï¿½ï¿½ï¿½ï¿½ Ã·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 			
 			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 			vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		} else {  //»õ·Î¿î ÆÄÀÏÀÌ µî·ÏµÇÁö ¾Ê¾Ò´Ù¸é
-			//±âÁ¸ ÀÌ¹ÌÁö ±×´ë·Î »ç¿ë
+		} else {  //ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½
 			vo.setGdsImg(req.getParameter("gdsImg"));
 			vo.setGdsThumbImg(req.getParameter("gdsThumbImg"));
 		}
@@ -161,7 +161,7 @@ public class AdminController {
 		return "redirect:/admin/goodsList";
 	}
 	
-	//»óÇ° »èÁ¦
+	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/goodsDelete", method = RequestMethod.POST)
 	public String postGoodsDelete(@RequestParam("n") int gdsNum) throws Exception {
 		System.out.println("========================================");
@@ -172,7 +172,7 @@ public class AdminController {
 		return "redirect:/admin/goodsList";
 	}
 	
-	//ÁÖ¹® ¸ñ·Ï
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
 	public void getOrderList(Model model) throws Exception {
 		System.out.println("========================================");
@@ -183,7 +183,7 @@ public class AdminController {
 		model.addAttribute("orderList", orderList);
 	}
 	
-	//ÁÖ¹® »ó¼¼ ¸ñ·Ï
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
 	public void getOrderList(@RequestParam("n") String orderID, OrderVO order, Model model) throws Exception {
 		System.out.println("========================================");
@@ -195,7 +195,7 @@ public class AdminController {
 		model.addAttribute("orderView", orderView);
 	}
 	
-	//ÁÖ¹® »ó¼¼ ¸ñ·Ï - »óÅÂ º¯°æ, »óÇ° ¼ö·® Á¶Àý
+	//ï¿½Ö¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/orderView", method = RequestMethod.POST)
 	public String delivery(@RequestParam("delivery") String delivery, OrderVO order) throws Exception {
 		System.out.println("========================================");
@@ -206,7 +206,7 @@ public class AdminController {
 		List<OrderListVO> orderView = adminService.orderView(order);
 		GoodsVO goods = new GoodsVO();
 		
-		if(delivery.equals("¹è¼ÛÁß")) {
+		if(delivery.equals("ë°°ì†¡ì¤‘")) {
 			for(OrderListVO i : orderView) {
 				goods.setGdsNum(i.getGdsNum());
 				goods.setGdsStock(i.getCartStock());
@@ -218,7 +218,7 @@ public class AdminController {
 		return "redirect:/admin/orderView?n=" + order.getOrderID();
 	}
 	
-	//¸ðµç »óÇ° ÈÄ±â Ãâ·Â
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/allReply", method = RequestMethod.GET)
 	public void getAllReply(Model model) throws Exception {
 		System.out.println("========================================");
@@ -229,7 +229,7 @@ public class AdminController {
 		model.addAttribute("reply", reply);
 	}
 	
-	//ÈÄ±â »èÁ¦
+	//ï¿½Ä±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/allReply", method = RequestMethod.POST)
 	public String postAllReply(@RequestParam("repNum") int repNum) throws Exception {
 		System.out.println("========================================");
