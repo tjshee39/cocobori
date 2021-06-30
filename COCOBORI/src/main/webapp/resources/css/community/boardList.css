@@ -1,0 +1,27 @@
+@charset "EUC-KR";
+
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;
+    margin-left: 10%;
+    margin-right: 10%;       
+}
+section#content ul li { 
+	border:5px solid #eee; 
+	padding:10px 20px; 
+	margin-bottom:20px; 
+	width: 800px;
+	display: flow-root;
+}
+
+#register_btn {
+	position: fixed;
+    z-index: 1;
+    right: 150px;
+    top: 800px;
+}
+#register_img {
+	width: 100px;
+}

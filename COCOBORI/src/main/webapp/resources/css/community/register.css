@@ -1,0 +1,52 @@
+@charset "EUC-KR";
+
+html, body {
+	height: 100%;
+}
+#container {
+    min-height:100%;    
+}
+.inputArea {
+	margin:10px 0; 
+}
+select {
+	width:200px; 
+}
+label {
+	display:inline-block; padding:5px; 
+}
+label[for='boardTitle'] {
+	width: 40px;
+}
+label[for='userName'] {
+	width: 50px;
+}
+label[for='boardContent'] { 
+	display:block; 
+}
+textarea#boardContent { 
+	width:400px; height:180px; 
+}
+#header_line {
+	display: block;
+	border-top: 1px solid #d5cbcb;
+	width: 100%;
+}
+#form_register {
+	display: flex;
+    justify-content: center;
+}
+#btn_register {
+    border-radius: 4px;
+    background-color: #f3bdc2;
+    border-width: 1px;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+.select_img img {
+	margin: 20px 0;
+}
+#input_gdsDes {
+	width: 566px;
+}
