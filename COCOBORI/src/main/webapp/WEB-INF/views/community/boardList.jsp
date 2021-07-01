@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>코코보리</title>
-<link rel="stylesheet" href="/resources/css/comunity/boardList.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/community/boardList.css" type="text/css">
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
@@ -20,13 +20,18 @@
 			
 			<section id="content">
 				<table class="boardList">
-					<tr><th>글 번호</th><th>제목</th><th>작성일</th><th>작성자</th></tr>
+					<tr style="background: #fbe6e8; border-bottom: 1px solid #ffb5bc;">
+						<th style="width: 60px; border-right: 1px solid #ffb5bc;  padding: 5px;">글 번호</th>
+						<th style="width: 500px; border-right: 1px solid #ffb5bc;">제목</th>
+						<th style="width: 100px; border-right: 1px solid #ffb5bc;">작성일</th>
+						<th style="width: 150px;">작성자</th>
+					</tr>
 					<c:forEach items="${boardList }" var="boardList">
 						<tr>
-							<td><c:out value="${boardList.boardNum }" /></td>
-							<td><c:out value="${boardList.boardTitle }" /></td>
-							<td><fmt:formatDate value="${boardList.regDate }" pattern="yyyy-MM-dd" /></td>
-							<td><c:out value="${boardList.userName }" /></td>
+							<td style="text-align: center; border-right: 1px solid #ffb5bc;"><c:out value="${boardList.boardNum }" /></td>
+							<td style="border-right: 1px solid #ffb5bc;"><a href="/community/boardView?n=${boardList.boardNum }" style="margin-left: 10px;"><c:out value="${boardList.boardTitle }" /></a></td>
+							<td style="text-align: center; border-right: 1px solid #ffb5bc;"><fmt:formatDate value="${boardList.regDate }" pattern="yyyy-MM-dd" /></td>
+							<td style="text-align: center;"><c:out value="${boardList.userName }" /></td>
 						</tr>
 					</c:forEach>				
 				</table>

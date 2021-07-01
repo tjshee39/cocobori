@@ -11,7 +11,7 @@
 	</insert>
 
 	<!-- 커뮤니티 게시글 목록 -->
-	<select id="allList" resultType="com.sunny.domain.CommunityVO">
+	<select id="allList" resultType="com.sunny.domain.CommunityViewVO">
 		 select
 		 	c.boardNum, m.userName, c.boardTitle, c.boardContent, c.regDate, c.boardImg
          from tbl_community c 
@@ -19,15 +19,13 @@
          		on c.userID = m.userID
 	</select>
 	
-	<!-- 카테고리별 상품 리스트: 1차 분류 -->
-	<select id="list_1" resultType="com.sunny.domain.GoodsViewVO">
-		select
-     		g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate,
-     		g.gdsImg, g.gdsThumbImg
-		from tbl_goods g
-			inner join tbl_goodscategory c
-    		on g.cateCode = c.cateCode
-		where g.cateCode = #{cateCode} or c.cateCodeRef = #{cateCodeRef}
+	<!-- 커뮤니티 게시글 조회 -->
+	<select id="boardView" resultType="com.sunny.domain.CommunityViewVO">
+		select c.boardNum, m.userName, c.boardTitle, c.boardContent, c.regDate, c.boardImg
+			from tbl_community c
+				inner join tbl_member m
+					on c.userID = m.userID
+					where boardNum = #{boardNum}
 	</select>
 	
 	<!-- 카테고리별 상품 리스트: 2차 분류 -->

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.CommunityVO;
+import com.sunny.domain.CommunityViewVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderDetailVO;
 import com.sunny.domain.OrderListVO;
@@ -35,7 +36,7 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	//커뮤니티 게시글 목록
 	@Override
-	public List<CommunityVO> allList() throws Exception {
+	public List<CommunityViewVO> allList() throws Exception {
 		System.out.println("========================================");
 		System.out.println("ComunityServiceImpl:: allList");
 		
@@ -43,13 +44,13 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 
-	//��ǰ ��ȸ
+	//커뮤니티 게시글 조회
 	@Override
-	public GoodsViewVO goodsView(int gdsNum) throws Exception {
+	public CommunityViewVO boardView(int boardNum) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreServiceImpl:: goodsView");
+		System.out.println("CommunityServiceImpl:: goodsView");
 		
-		return dao.goodsView(gdsNum);
+		return dao.boardView(boardNum);
 	}
 
 	//�ı� �ۼ�

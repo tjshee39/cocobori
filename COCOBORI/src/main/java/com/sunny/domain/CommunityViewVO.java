@@ -2,7 +2,7 @@ package com.sunny.domain;
 
 import java.util.Date;
 
-public class CommunityVO {
+public class CommunityViewVO {
 /*
  *  boardNum		int				not null(PK),
  *  userID			varchar(50)		not null(FK),
@@ -20,6 +20,7 @@ public class CommunityVO {
 	private Date regDate;
 	private String boardImg;
 	private String boardThumbImg;
+	private String userName;
 	
 	
 	public int getBoardNum() {
@@ -52,6 +53,12 @@ public class CommunityVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getBoardImg() {
 		return boardImg;
 	}
@@ -62,7 +69,7 @@ public class CommunityVO {
 		return boardThumbImg;
 	}
 	public void setBoardThumbImg(String boardThumbImg) {
-		boardThumbImg = boardThumbImg;
+		this.boardThumbImg = boardThumbImg;
 	}
 	
 	

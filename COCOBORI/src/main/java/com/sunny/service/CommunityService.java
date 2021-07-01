@@ -5,6 +5,7 @@ import java.util.List;
 import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.CommunityVO;
+import com.sunny.domain.CommunityViewVO;
 import com.sunny.domain.GoodsVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderDetailVO;
@@ -19,10 +20,10 @@ public interface CommunityService {
 	public void register(CommunityVO vo) throws Exception;
 	
 	//커뮤니티 게시글 목록
-	public List<CommunityVO> allList() throws Exception;
+	public List<CommunityViewVO> allList() throws Exception;
 	
-	//��ǰ ��ȸ
-	public GoodsViewVO goodsView(int gdsNum) throws Exception;
+	//커뮤니티 게시글 조회
+	public CommunityViewVO boardView(int boardNum) throws Exception;
 	
 	//�ı� �ۼ�
 	public void registReply(ReplyVO reply) throws Exception;

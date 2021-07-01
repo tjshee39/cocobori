@@ -26,6 +26,7 @@
 						<label for="boardTitle">제목</label>
 					 	<input type="text" id="boardTitle" name="boardTitle" style="width: 340px;" />
 					 	<label for="userName">작성자</label>
+					 	<input type="hidden" id="userID" name="userID" value="${member.userID }"/>
 					 	<input type="text" id="userName" name="userName" value="${member.userName }" readonly style="width: 100px;">
 					</div>
 					

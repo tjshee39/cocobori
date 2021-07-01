@@ -15,7 +15,15 @@ section#content ul li {
 	width: 800px;
 	display: flow-root;
 }
-
+.boardList {
+	display: flex;
+	justify-content: center;
+	border-collapse: collapse;
+}
+.borderList tr, td {
+	border-bottom: 1px solid #ffb5bc;
+	padding: 5px;
+}
 #register_btn {
 	position: fixed;
     z-index: 1;

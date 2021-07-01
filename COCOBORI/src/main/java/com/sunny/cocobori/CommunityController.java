@@ -30,6 +30,7 @@ import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.CategoryVO;
 import com.sunny.domain.CommunityVO;
+import com.sunny.domain.CommunityViewVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.MemberVO;
 import com.sunny.domain.OrderDetailVO;
@@ -38,6 +39,7 @@ import com.sunny.domain.OrderVO;
 import com.sunny.domain.ReplyListVO;
 import com.sunny.domain.ReplyVO;
 import com.sunny.service.CommunityService;
+import com.sunny.utils.UploadFileUtils;
 
 import net.sf.json.JSONArray;
 
@@ -53,15 +55,19 @@ public class CommunityController {
 	@Inject
 	CommunityService service;
 	
+	@Resource(name="BoarduploadPath") 
+	private String BoarduploadPath;
+
+	
 	//메인
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public void getComunity(Model model) throws Exception {
 		System.out.println("========================================");
 		System.out.println("CommunityController:: getBoardList");
 		
-		List<CommunityVO> list= service.allList();
+		List<CommunityViewVO> boardList= service.allList();
 		
-		model.addAttribute("list", list);
+		model.addAttribute("boardList", boardList);
 	}
 	
 	//게시글 작성 화면 출력
@@ -71,64 +77,50 @@ public class CommunityController {
 		System.out.println("CommunityController:: getRegister");
 	} 
 	
-	/*
-	//게시글 작성
-	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String postRegister(ComunityVO comunity, HttpSession session) throws Exception {
-		System.out.println("========================================");
-		System.out.println("CommunityController:: postRegister");
-		
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		comunity.setUserID(member.getUserID());
-		
-		service.register(comunity);
-		
-		return "redirect:/";
-	}
-	*/
-	
 	//게시글 등록(ckEditor)
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	@ResponseBody
-	public String boardCkUpload(CommunityVO comunity, HttpSession session, HttpServletRequest req, 
-			HttpServletResponse res, @RequestParam MultipartFile upload) throws Exception {
+	public String boardCkUpload(CommunityVO community, HttpSession session, HttpServletRequest req, 
+			HttpServletResponse res, @RequestParam MultipartFile file) throws Exception {
 		System.out.println("========================================");
 		System.out.println("CommunityController:: boardCkUpload");
 		
 		MemberVO member = (MemberVO)session.getAttribute("member");
-		comunity.setUserID(member.getUserID());
+		community.setUserID(member.getUserID());
 		
-		// 인코딩 
-		res.setCharacterEncoding("utf-8"); 
-		res.setContentType("text/html;charset=utf-8"); 
+		String imgUploadPath = BoarduploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
 		
-		// 파일 이름 가져오기
-		String fileName = upload.getOriginalFilename(); 
-		byte[] bytes = upload.getBytes(); 
+		//���� ��ǲ�ڽ��� ÷�ε� ������ ���ٸ�
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			
-		// 업로드 경로 
-		String ckUploadPath = "C:\\Users\\PPC028\\Documents\\workspace-spring-tool-suite-4-4.11.0.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\cocobori\\WEB-INF\\views\\images";
-			 
-		OutputStream out = new FileOutputStream(new File(ckUploadPath + fileName));
+			//gdsImg: �������� ��� + ���ϸ�
+			community.setBoardImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			//gdsThumbImg: ����� ��� + ���ϸ�
+			community.setBoardThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 			
-		//서버로 업로드
-		//write메소드의 매개값으로 파일의 총 바이트를 매개값으로 준다.
-		//지정된 바이트를 출력 스트랩에 쓴다
-		out.write(bytes); 
+		} else {
+			//÷�ε� ������ ������ none.png������ ��� ���
+			fileName = File.separator + "images" + File.separator + "none_image.png";
 			
-		//클라이언트 결과에 표시
-		String callback = req.getParameter("CKEditorFuncNum");
-			
-		//서버 > 클라이언트로 텍스트 전송(자바스크립트 실행)
-		PrintWriter printWriter = res.getWriter();
-		String fileUrl = req.getContextPath() + "/images/" + fileName;
-		printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
-				+ "','이미지가 업로드 되었습니다.')" + "</script>");
-		printWriter.flush();
-		
-		service.register(comunity);
+			community.setBoardImg(fileName);
+		}
+				
+		service.register(community);
 		
 		return "redirect:/community/boardList";
+
+	}
+	
+	//게시글 조회
+	@RequestMapping(value="/boardView", method = RequestMethod.GET)
+	public void getBoardView(@RequestParam("n") int boardNum, Model model) throws Exception {
+		System.out.println("========================================");
+		System.out.println("CommunityController:: getBpardView");
+		
+		CommunityViewVO view = service.boardView(boardNum);
+		model.addAttribute("view", view);
 	}
 	
 	/*

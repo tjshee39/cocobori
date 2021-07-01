@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.sunny.domain.CartListVO;
 import com.sunny.domain.CartVO;
 import com.sunny.domain.CommunityVO;
+import com.sunny.domain.CommunityViewVO;
 import com.sunny.domain.GoodsViewVO;
 import com.sunny.domain.OrderDetailVO;
 import com.sunny.domain.OrderListVO;
@@ -24,7 +25,7 @@ public class CommunityDAOImpl implements CommunityDAO{
 	private SqlSession sql;
 	
 	//mapper
-	private static String namespace = "com.sunny.mappers.comunityMapper";
+	private static String namespace = "com.sunny.mappers.communityMapper";
 	
 	//커뮤니티 게시글 작성
 	@Override
@@ -37,20 +38,20 @@ public class CommunityDAOImpl implements CommunityDAO{
 	
 	//커뮤니티 게시글 목록
 	@Override
-	public List<CommunityVO> allList() throws Exception {
+	public List<CommunityViewVO> allList() throws Exception {
 		System.out.println("========================================");
 		System.out.println("ComunityDAOImpl:: allList");
 		
 		return sql.selectList(namespace + ".allList");
 	}
 
-	//ī�װ��� ��ǰ ���: 2�� �з�
+	//커뮤니티 게시글 조회
 	@Override
-	public List<GoodsViewVO> list(int cateCode) throws Exception {
+	public CommunityViewVO boardView(int boardNum) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreDAOImpl:: List_2");
+		System.out.println("ComunityDAOImpl:: boardView");
 		
-		return sql.selectList(namespace + ".list_2", cateCode);
+		return sql.selectOne(namespace + ".boardView", boardNum);
 	}
 
 	//��ǰ ��ȸ

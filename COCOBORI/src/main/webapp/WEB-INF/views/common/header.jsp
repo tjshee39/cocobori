@@ -40,7 +40,7 @@
 		<div class="top_second_menu">
 			<ul class="second_menu">
 				<li>
-					<a href="/comunity/boardList">커뮤니티</a>
+					<a href="/community/boardList">커뮤니티</a>
 				</li>
 				<li>
 					<a href="/store/store">스토어</a>
