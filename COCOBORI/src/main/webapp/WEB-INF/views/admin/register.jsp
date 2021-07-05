@@ -95,6 +95,46 @@
 						</script>
 						
 					</div>
+					<div class="inputArea">
+						<label for="gdsImg">이미지</label>
+						<input type="file" id="gdsImg2" name="file" />
+						<div class="select_img"><img src="" /></div>
+						
+						<script>
+							//어떤 이미지 선택했는지 보여줌
+							$("#gdsImg2").change(function(){ 
+								if(this.files && this.files[0]) {
+									var reader = new FileReader;
+									reader.onload = function(data) {
+										$(".select_img img").attr("src", data.target.result).width(500);        
+										}
+									reader.readAsDataURL(this.files[0]);
+								}
+							});
+ 	
+						</script>
+						
+					</div>
+					<div class="inputArea">
+						<label for="gdsImg">이미지</label>
+						<input type="file" id="gdsImg3" name="file" />
+						<div class="select_img"><img src="" /></div>
+						
+						<script>
+							//어떤 이미지 선택했는지 보여줌
+							$("#gdsImg3").change(function(){ 
+								if(this.files && this.files[0]) {
+									var reader = new FileReader;
+									reader.onload = function(data) {
+										$(".select_img img").attr("src", data.target.result).width(500);        
+										}
+									reader.readAsDataURL(this.files[0]);
+								}
+							});
+ 	
+						</script>
+						
+					</div>
 					
 					
 					<div class="inputArea">

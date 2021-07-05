@@ -11,40 +11,40 @@ import com.sunny.domain.ReplyListVO;
 
 public interface AdminDAO {
 	
-	//Ä«Å×°í¸®
+	//ì¹´í…Œê³ ë¦¬
 	public List<CategoryVO> category() throws Exception;
 	
-	//»óÇ° µî·Ï
+	//ìƒí’ˆ ë“±ë¡
 	public void register(GoodsVO vo) throws Exception;
 	
-	//»óÇ° ¸ñ·Ï
+	//ìƒí’ˆ ëª©ë¡
 	public List<GoodsViewVO> goodslist() throws Exception;
 	
-	//»óÇ° Á¶È¸
+	//ìƒí’ˆ ì¡°íšŒ
 	public GoodsViewVO goodsView(int gdsNum) throws Exception;
 	
-	//»óÇ° ¼öÁ¤
+	//ìƒí’ˆ ìˆ˜ì •
 	public void goodsModify(GoodsVO vo) throws Exception;
 	
-	//»óÇ° »èÁ¦
+	//ìƒí’ˆ ì‚­ì œ
 	public void goodsDelete(int gdsNum) throws Exception;
 	
-	//ÁÖ¹® ¸ñ·Ï
+	//ì£¼ë¬¸ ëª©ë¡
 	public List<OrderVO> orderList() throws Exception;
 	
-	//Æ¯Á¤ ÁÖ¹® ¸ñ·Ï
+	//ì£¼ë¬¸ ì •ë³´ ì¡°íšŒ
 	public List<OrderListVO> orderView(OrderVO order) throws Exception;
 	
-	//¹è¼Û »óÅÂ
+	//ë°°ì†¡ ìƒíƒœ ë³€ê²½
 	public void delivery(OrderVO order) throws Exception;
 	
-	//»óÇ° ¼ö·® Á¶Àı
+	//ë¬¼í’ˆ ìˆ˜ëŸ‰ ë³€ê²½
 	public  void changeStock(GoodsVO goods) throws Exception;
 	
-	//¸ğµç »óÇ° ÈÄ±â Ãâ·Â
+	//ìƒí’ˆ í›„ê¸° ëª©ë¡
 	public List<ReplyListVO> allReply() throws Exception;
 	
-	//ÈÄ±â »èÁ¦
+	//ìƒí’ˆ í›„ê¸° ì‚­ì œ
 	public void deleteReply(int repNum) throws Exception;
 
 }

@@ -25,11 +25,11 @@ public interface CommunityService {
 	//커뮤니티 게시글 조회
 	public CommunityViewVO boardView(int boardNum) throws Exception;
 	
-	//�ı� �ۼ�
-	public void registReply(ReplyVO reply) throws Exception;
+	//커뮤니티 게시글 수정
+	public void boardModify(CommunityVO vo) throws Exception;
 	
-	//��ǰ �ı� ���
-	public List<ReplyListVO> replyList(int gdsNum) throws Exception;
+	//커뮤니티 게시글 삭제
+	public void boardDelete(int boardNum) throws Exception;
 
 	//��ǰ �ı� ����
 	public void deleteReply(ReplyVO reply) throws Exception;

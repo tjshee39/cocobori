@@ -39,7 +39,7 @@ public class StoreController {
 	@Inject
 	StoreService service;
 	
-	//�����
+	//스토어 메인
 	@RequestMapping(value = "/store", method = RequestMethod.GET)
 	public void getStore(Model model) throws Exception {
 		System.out.println("========================================");
@@ -50,7 +50,7 @@ public class StoreController {
 		model.addAttribute("list", list);
 	}
 	
-	//ī�װ��� ��ǰ ���
+	//카테고리 별 상품 목록
 	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public void getList(@RequestParam("c") int cateCode, @RequestParam("l") int level, Model model) throws Exception {
 		System.out.println("========================================");
@@ -62,7 +62,7 @@ public class StoreController {
 		model.addAttribute("list", list);
 	}
 	
-	//��ǰ ��ȸ
+	//상품 조회
 	@RequestMapping(value="/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		System.out.println("========================================");
@@ -107,7 +107,7 @@ public class StoreController {
 		service.registReply(reply);
 	}
 	
-	//��ǰ �ı� ���
+	//상품 후기 조회
 	@ResponseBody
 	@RequestMapping(value = "/view/replyList", method = RequestMethod.GET)
 	public List<ReplyListVO> getReplyList(@RequestParam("n") int gdsNum) throws Exception {
@@ -119,7 +119,7 @@ public class StoreController {
 		return reply;
 	}
 	
-	//��ǰ �ı� ����
+	//상품 후기 삭제
 	@ResponseBody
 	@RequestMapping(value = "/view/deleteReply", method = RequestMethod.POST)
 	public int getReplyList(ReplyVO reply, HttpSession session) throws Exception {
@@ -128,14 +128,15 @@ public class StoreController {
 		
 		int result = 0;
 		
-		//���� ���� ������
+		//현재 로그인 한 회원 정보 가져오기
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		System.out.println("member: " + member);
-		//userID Ȯ�� ������� ������
+		
+		//현재 회원의 아이디와 후작성한 회원의 아이디 비교
 		String userID = service.idCheck(reply.getRepNum());
 		System.out.println("userID: " + userID);
 		
-		//���ڿ� �� equals
+		//본인이 작성한 상푸 후기는 삭제 가능
 		if(member.getUserID().equals(userID)) {
 			reply.setUserID(member.getUserID());
 			service.deleteReply(reply);
@@ -146,7 +147,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//��ǰ �ı� ����
+	//상품 후기 수정
 	@ResponseBody
 	@RequestMapping(value = "/view/modifyReply", method = RequestMethod.POST)
 	public int modifyReply(ReplyVO reply, HttpSession session) throws Exception {
@@ -166,7 +167,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//��ٱ��� ���
+	//장바구니 담기
 	@ResponseBody
 	@RequestMapping(value = "view/addCart", method = RequestMethod.POST)
 	public int addCart(CartVO cart, HttpSession session) throws Exception {
@@ -186,7 +187,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//��ٱ��� ���
+	//회원 별 장바구니 목록
 	@RequestMapping(value = "/cartList", method = RequestMethod.GET)
 	public void getCartList(HttpSession session, Model model) throws Exception {
 		System.out.println("========================================");
@@ -200,7 +201,7 @@ public class StoreController {
 		model.addAttribute("cartList", cartList);
 	}
 	
-	//��ٱ��� ����
+	//장바구니 삭제
 	@ResponseBody
 	@RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
 	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart) throws Exception {
@@ -226,7 +227,7 @@ public class StoreController {
 		return result;
 	}
 	
-	//�ֹ�
+	//장바구니 목록
 	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
 	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception {
 		System.out.println("========================================");
@@ -235,7 +236,7 @@ public class StoreController {
 		MemberVO member = (MemberVO)session.getAttribute("member");  
 		String userID = member.getUserID();
 		
-		//��, ��, �� ����
+		//주문한 시점의 날짜 가져오기
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -243,11 +244,11 @@ public class StoreController {
 		String subNum = "";
 		 
 		for(int i = 1; i <= 6; i ++) {
-			//6�ڸ� ���� ����
+			//주문한 상품의 종류만큼 반복
 			subNum += (int)(Math.random() * 10);
 		}
 		 
-		//��¥_��������:: �ֹ� ������ȣ
+		//주문번호 생성:: 날짜 + 랜덤번호
 		String orderID = ymd + "_" + subNum;
 		 
 		order.setOrderID(orderID);
@@ -263,7 +264,7 @@ public class StoreController {
 		return "redirect:/store/orderList"; 
 	}
 	
-	//�ֹ� ���
+	//회원 별 주문 목록
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
 	public void getOrderList(HttpSession session, OrderVO order, Model model) throws Exception {
 		System.out.println("========================================");
@@ -279,7 +280,7 @@ public class StoreController {
 		model.addAttribute("orderList", orderList);
 	}
 	
-	//�ֹ� �� ���
+	//회원 별 주문 조회
 	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
 	public void getOrderList(HttpSession session, @RequestParam("n") String orderID, OrderVO order, Model model) throws Exception {
 		System.out.println("========================================");

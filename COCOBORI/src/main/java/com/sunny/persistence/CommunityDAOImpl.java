@@ -54,22 +54,22 @@ public class CommunityDAOImpl implements CommunityDAO{
 		return sql.selectOne(namespace + ".boardView", boardNum);
 	}
 
-	//��ǰ ��ȸ
+	//커뮤니티 게시글 수정
 	@Override
-	public GoodsViewVO goodsView(int gdsNum) throws Exception { 
+	public void boardModify(CommunityVO vo) throws Exception { 
 		System.out.println("========================================");
-		System.out.println("StoreDAOImpl:: goodsView");
+		System.out.println("CommunityDAOImpl:: boardModify");
 		
-		return sql.selectOne("com.sunny.mappers.adminMapper" + ".goodsView", gdsNum);
+		sql.update(namespace + ".boardModify", vo);
 	}
 
-	//�ı� �ۼ�
+	//커뮤니티 게시글 삭제
 	@Override
-	public void registReply(ReplyVO reply) throws Exception {
+	public void boardDelete(int boardNum) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreDAOImpl:: registReply");
+		System.out.println("CommunityDAOImpl:: boardDelete");
 		
-		sql.insert(namespace + ".registReply", reply);
+		sql.delete(namespace + ".boardDelete", boardNum);
 	}
 
 	//��ǰ �ı� ���

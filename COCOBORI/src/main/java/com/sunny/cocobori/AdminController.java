@@ -42,14 +42,14 @@ public class AdminController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
-	//������ ȭ��
+	//관리자 메인
 	@RequestMapping(value = "/AdminMain", method = RequestMethod.GET)
 	public void getAdminMain() throws Exception {
 		System.out.println("========================================");
 		System.out.println("AdminController:: getAdminMain");
 	}
 	
-	//��ǰ ���
+	//상품 등록 화면 출력
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public void getRegister(Model model) throws Exception {
 		System.out.println("========================================");
@@ -60,7 +60,7 @@ public class AdminController {
 		model.addAttribute("category", JSONArray.fromObject(category));
 	}
 	
-	//��ǰ���
+	//상품 등록
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String postRegister(GoodsVO vo, MultipartFile file) throws Exception {
 		System.out.println("========================================");
@@ -92,7 +92,7 @@ public class AdminController {
 		return "redirect:/admin/goodsList";
 	}
 	
-	//��ǰ���
+	//상품 목록
 	@RequestMapping(value="/goodsList", method = RequestMethod.GET)
 	public void getGoodsList(Model model) throws Exception {
 		System.out.println("========================================");
@@ -103,7 +103,7 @@ public class AdminController {
 		model.addAttribute("list", list);
 	}
 	
-	//��ǰ��ȸ(ī�װ� ����)
+	//상품 조회
 	@RequestMapping(value="/goodsView", method = RequestMethod.GET)
 	public void getGoodsView(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		System.out.println("========================================");
@@ -115,7 +115,7 @@ public class AdminController {
 	}
 	
 	
-	//��ǰ ����
+	//상품 수정 화면 출력
 	@RequestMapping(value="/goodsModify", method = RequestMethod.GET)
 	public void getGoodsModify(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		System.out.println("========================================");
@@ -130,7 +130,7 @@ public class AdminController {
 		model.addAttribute("category", JSONArray.fromObject(category));
 	}
 	
-	//��ǰ ����
+	//상품 수정
 	@RequestMapping(value="/goodsModify", method = RequestMethod.POST)
 	public String postGoodsModify(GoodsVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
 		System.out.println("========================================");
@@ -161,7 +161,7 @@ public class AdminController {
 		return "redirect:/admin/goodsList";
 	}
 	
-	//��ǰ ����
+	//상품 삭제
 	@RequestMapping(value="/goodsDelete", method = RequestMethod.POST)
 	public String postGoodsDelete(@RequestParam("n") int gdsNum) throws Exception {
 		System.out.println("========================================");
@@ -172,7 +172,7 @@ public class AdminController {
 		return "redirect:/admin/goodsList";
 	}
 	
-	//�ֹ� ���
+	//주문 목록
 	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
 	public void getOrderList(Model model) throws Exception {
 		System.out.println("========================================");
@@ -183,7 +183,7 @@ public class AdminController {
 		model.addAttribute("orderList", orderList);
 	}
 	
-	//�ֹ� �� ���
+	//주문 정보 조회
 	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
 	public void getOrderList(@RequestParam("n") String orderID, OrderVO order, Model model) throws Exception {
 		System.out.println("========================================");
@@ -195,7 +195,7 @@ public class AdminController {
 		model.addAttribute("orderView", orderView);
 	}
 	
-	//�ֹ� �� ��� - ���� ����, ��ǰ ���� ����
+	//베송 상태 변경
 	@RequestMapping(value = "/orderView", method = RequestMethod.POST)
 	public String delivery(@RequestParam("delivery") String delivery, OrderVO order) throws Exception {
 		System.out.println("========================================");
@@ -218,7 +218,7 @@ public class AdminController {
 		return "redirect:/admin/orderView?n=" + order.getOrderID();
 	}
 	
-	//��� ��ǰ �ı� ���
+	//모든 상품 후기 출력
 	@RequestMapping(value = "/allReply", method = RequestMethod.GET)
 	public void getAllReply(Model model) throws Exception {
 		System.out.println("========================================");
@@ -229,7 +229,7 @@ public class AdminController {
 		model.addAttribute("reply", reply);
 	}
 	
-	//�ı� ����
+	//모든 상품 후기 관리
 	@RequestMapping(value="/allReply", method = RequestMethod.POST)
 	public String postAllReply(@RequestParam("repNum") int repNum) throws Exception {
 		System.out.println("========================================");

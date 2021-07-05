@@ -79,15 +79,15 @@ public class CommunityController {
 	
 	//게시글 등록(ckEditor)
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String boardCkUpload(CommunityVO community, HttpSession session, HttpServletRequest req, 
+	public String boardCkUpload(CommunityVO vo, HttpSession session, HttpServletRequest req, 
 			HttpServletResponse res, @RequestParam MultipartFile file) throws Exception {
 		System.out.println("========================================");
 		System.out.println("CommunityController:: boardCkUpload");
 		
 		MemberVO member = (MemberVO)session.getAttribute("member");
-		community.setUserID(member.getUserID());
+		vo.setUserID(member.getUserID());
 		
-		String imgUploadPath = BoarduploadPath + File.separator + "imgUpload";
+		String imgUploadPath = BoarduploadPath + File.separator + "boardImgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 		
@@ -96,18 +96,18 @@ public class CommunityController {
 			fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 			
 			//gdsImg: �������� ��� + ���ϸ�
-			community.setBoardImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setBoardImg(File.separator + "boardImgUpload" + ymdPath + File.separator + fileName);
 			//gdsThumbImg: ����� ��� + ���ϸ�
-			community.setBoardThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			vo.setBoardThumbImg(File.separator + "boardImgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 			
 		} else {
 			//÷�ε� ������ ������ none.png������ ��� ���
 			fileName = File.separator + "images" + File.separator + "none_image.png";
 			
-			community.setBoardImg(fileName);
+			vo.setBoardImg(fileName);
 		}
 				
-		service.register(community);
+		service.register(vo);
 		
 		return "redirect:/community/boardList";
 
@@ -117,7 +117,7 @@ public class CommunityController {
 	@RequestMapping(value="/boardView", method = RequestMethod.GET)
 	public void getBoardView(@RequestParam("n") int boardNum, Model model) throws Exception {
 		System.out.println("========================================");
-		System.out.println("CommunityController:: getBpardView");
+		System.out.println("CommunityController:: getBoardView");
 		
 		CommunityViewVO view = service.boardView(boardNum);
 		model.addAttribute("view", view);
@@ -137,29 +137,54 @@ public class CommunityController {
 	*/
 
 	
-	//��ǰ �ı� �ۼ�
-	@ResponseBody
-	@RequestMapping(value="/view/registReply", method = RequestMethod.POST)
-	public void registReply(ReplyVO reply, HttpSession session) throws Exception {
+	//게시글 수정 화면 출력
+	@RequestMapping(value="/boardModify", method = RequestMethod.GET)
+	public void getBoardModify(@RequestParam("n") int boardNum, Model model) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreController:: registReply");
+		System.out.println("CommunityController:: getBoardModify");
 		
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		reply.setUserID(member.getUserID());
-		
-		service.registReply(reply);
+		CommunityViewVO view = service.boardView(boardNum); 
+		model.addAttribute("view", view);
 	}
 	
-	//��ǰ �ı� ���
-	@ResponseBody
-	@RequestMapping(value = "/view/replyList", method = RequestMethod.GET)
-	public List<ReplyListVO> getReplyList(@RequestParam("n") int gdsNum) throws Exception {
+	//게시글 수정
+	@RequestMapping(value="/boardModify", method = RequestMethod.POST)
+	public String postBoardModify(CommunityVO vo, MultipartFile file, HttpServletRequest req) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreController:: getReplyList");
+		System.out.println("CommunityController:: postBoardModify");
 		
-		List<ReplyListVO> reply = service.replyList(gdsNum);
+		//파일 새로 교체
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			//���� ���� ����
+			new File(BoarduploadPath + req.getParameter("boardImg")).delete();
+			new File(BoarduploadPath + req.getParameter("boardThumbImg")).delete();
+					
+			//���� ÷���� ���� ���
+			String imgUploadPath = BoarduploadPath + File.separator + "boardImgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+					
+			vo.setBoardImg(File.separator + "boardImgUpload" + ymdPath + File.separator + fileName);
+			vo.setBoardThumbImg(File.separator + "boardImgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		} else {  //이미지 수정X
+			vo.setBoardImg(req.getParameter("boardImg"));
+			vo.setBoardThumbImg(req.getParameter("boardThumbImg"));
+		}	
+			
+		service.boardModify(vo);
+				
+		return "redirect:/community/boardList";
+	}
+	
+	//게시글 삭제
+	@RequestMapping(value = "/boardDelete", method = RequestMethod.POST)
+	public String boardDelete(@RequestParam("n") int boardNum) throws Exception {
+		System.out.println("========================================");
+		System.out.println("CommunityController:: boardDelete");
 		
-		return reply;
+		service.boardDelete(boardNum);
+		
+		return "redirect:/community/boardList";
 	}
 	
 	//��ǰ �ı� ����

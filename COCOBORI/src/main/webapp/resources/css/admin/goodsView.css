@@ -30,8 +30,8 @@ textarea#gdsDes {
 	width: 100%;
 }
 #form_view {
-	margin: auto;
-    width: 60%;
+	display: flex;
+	justify-content: center;
 }
 label {
 	font-weight: bold;

@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>코코보리</title>
 <link rel="stylesheet" href="/resources/css/admin/goodsModify.css" type="text/css">
+<script src="/resources/ckeditor/ckeditor.js"></script>
+
 </head>
 <body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -49,8 +51,17 @@
 					<div class="inputArea">
 						<label for="gdsDes">상품소개</label>
 					 	<textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes }</textarea>
+						<script>
+							var ckeditor_config = {
+							 	resize_enaleb : false,
+							   	enterMode : CKEDITOR.ENTER_BR,
+							   	shiftEnterMode : CKEDITOR.ENTER_P,
+							   	filebrowserUploadUrl : "/admin/goods/ckUpload"
+							 	};
+							 
+							 	CKEDITOR.replace("gdsDes", ckeditor_config);
+						</script>
 					</div>
-					
 					<div class="inputArea">
 						<label for="gdsImg">이미지</label>
 						<input type="file" id="gdsImg" name="file" />
@@ -71,7 +82,7 @@
    								}
   							});
  						</script>
- 						<%=request.getRealPath("/") %>
+ 						
 					</div>
 					
 					<div class="inputArea">

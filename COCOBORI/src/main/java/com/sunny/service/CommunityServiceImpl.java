@@ -29,7 +29,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public void register(CommunityVO vo) throws Exception {
 		System.out.println("========================================");
-		System.out.println("ComunityServiceImpl:: register");
+		System.out.println("CommunityServiceImpl:: register");
 		
 		dao.register(vo);
 	}
@@ -38,7 +38,7 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public List<CommunityViewVO> allList() throws Exception {
 		System.out.println("========================================");
-		System.out.println("ComunityServiceImpl:: allList");
+		System.out.println("CommunityServiceImpl:: allList");
 		
 		return dao.allList();
 	}
@@ -48,27 +48,27 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public CommunityViewVO boardView(int boardNum) throws Exception {
 		System.out.println("========================================");
-		System.out.println("CommunityServiceImpl:: goodsView");
+		System.out.println("CommunityServiceImpl:: boardView");
 		
 		return dao.boardView(boardNum);
 	}
 
-	//�ı� �ۼ�
+	//커뮤니티 게시글 수정
 	@Override
-	public void registReply(ReplyVO reply) throws Exception {
+	public void boardModify(CommunityVO vo) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreServiceImpl:: registReply");
+		System.out.println("CommunityServiceImpl:: boardModify");
 		
-		dao.registReply(reply);
+		dao.boardModify(vo);
 	}
 
-	//��ǰ �ı� ���
+	//커뮤니티 게시글 삭제
 	@Override
-	public List<ReplyListVO> replyList(int gdsNum) throws Exception {
+	public void boardDelete(int boardNum) throws Exception {
 		System.out.println("========================================");
-		System.out.println("StoreServiceImpl:: replyList");
+		System.out.println("CommunityServiceImpl:: boardDelete");
 		
-		return dao.replyList(gdsNum);
+		dao.boardDelete(boardNum);
 	}
 
 	//��ǰ �ı� ����

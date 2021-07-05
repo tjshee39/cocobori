@@ -35,14 +35,14 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
 	
-	//È¸¿ø°¡ÀÔ get
+	//íšŒì›ê°€ì… í™”ë©´ ì¶œë ¥
 	@RequestMapping(value="/signUp", method = RequestMethod.GET)
 	public void getSignUp() throws Exception {
 		System.out.println("========================================");
 		System.out.println("MemberController:: getSignUp");
 	}
 	
-	//È¸¿ø°¡ÀÔ post
+	//íšŒì›ê°€ì…
 	@RequestMapping(value="/signUp", method = RequestMethod.POST)
 	public String postSignUp(MemberVO vo) throws Exception {
 		System.out.println("========================================");
@@ -57,14 +57,14 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//·Î±×ÀÎ get
+	//ë¡œê·¸ì¸ í™”ë©´ ì¶œë ¥
 	@RequestMapping(value="/logIn", method = RequestMethod.GET)
 	public void getLogIn() throws Exception {
 		System.out.println("========================================");
 		System.out.println("MemberController:: getLogIn");
 	}
 	
-	//·Î±×ÀÎ post
+	//ë¡œê·¸ì¸
 	@RequestMapping(value="/logIn", method = RequestMethod.POST)
 	public String postLogIn(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr, String userID) throws Exception {
 		System.out.println("========================================");
@@ -102,7 +102,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//·Î±×¾Æ¿ô
+	//ë¡œê·¸ì•„ì›ƒ
 	@RequestMapping(value="/logOut", method = RequestMethod.GET)
 	public String LogOut(HttpSession session) throws Exception {
 		System.out.println("========================================");

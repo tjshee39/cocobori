@@ -11,7 +11,7 @@ import com.sunny.domain.MemberVO;
 
 public class AdminInterceptor extends HandlerInterceptorAdapter {
 	
-	//°ü¸®ÀÚ ¿©ºÎ È®ÀÎ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object obj) throws Exception {
 		
@@ -23,7 +23,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 		
-		//°ü¸®ÀÚ ¾Æ´Ï¸é ¸ŞÀÎÆäÀÌÁö·Î º¸³»ÁÜ
+		//ì¼ë°˜íšŒì›ì´ urlë¡œ ê´€ë¦¬ì í˜ì´ì§€ì— ì ‘ì†í•˜ë©´ ë©”ì¸í™”ë©´ìœ¼ë¡œ ëŒë ¤ë³´ëƒ„
 		if(member.getVerify() != 9) {
 			res.sendRedirect("/");
 			return false;

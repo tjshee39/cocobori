@@ -7,7 +7,7 @@
     min-height:100%;    
 }
 select {
-	width:100px; 
+	width:200px; 
 }
 label {
 	display:inline-block; width:70px; padding:5px; 
@@ -16,7 +16,7 @@ label[for='gdsDes'] {
 	display:block; 
 }
 input { 
-	width:150px; 
+	width:483px; 
 }
 textarea#gdsDes { 
 	width:400px; height:180px; 
@@ -26,8 +26,9 @@ textarea#gdsDes {
 	border-top: 1px solid #d5cbcb;
 	width: 100%;
 }
-#form_register {
-	margin-left: 35%;	
+#form_register {	
+	display: flex;
+	justify-content: center;
 }
 #btn_update, #btn_cancel {
     border-radius: 4px;
@@ -38,6 +39,11 @@ textarea#gdsDes {
     border: none;
 }
 .select_img img {
-	width: 500px;
 	margin: 20px 0;
+}
+#ckEditor {
+	width: fit-content;
+}
+#input_gdsDes {
+	width: 566px;
 }
