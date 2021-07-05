@@ -89,8 +89,8 @@
 
 	//취소
 	$("#btn_cancel").click(function(){
-		  history.back();
-		  //location.href = "/admin/goodsView?n=" + ${goods.gdsNum};
+		  //history.back();
+		  location.href = "/community/boardView?n=" + ${view.boardNum};
 		  });
 	
 </script>
