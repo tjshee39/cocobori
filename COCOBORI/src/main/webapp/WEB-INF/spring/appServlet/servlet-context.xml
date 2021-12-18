@@ -30,12 +30,20 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
-	
-	<!-- 업로드 패스 설정:: 펜타코드PC board -->
+	<!-- 업로드 패스 설정:: community board -->
 	<beans:bean id = "BoarduploadPath" class="java.lang.String">
 		<beans:constructor-arg value="C:\Users\PPC028\Documents\workspace-spring-tool-suite-4-4.11.0.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cocobori\resources">
 		</beans:constructor-arg>
 	</beans:bean>
+	
+	
+	<!-- 
+	업로드 패스 설정:: 펜타코드PC board
+	<beans:bean id = "BoarduploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\Users\PPC028\Documents\workspace-spring-tool-suite-4-4.11.0.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cocobori\resources">
+		</beans:constructor-arg>
+	</beans:bean>
+	-->
 	
 	<resources location="/resources/ckUpload/" mapping="/ckUpload/**"></resources>
 	
