@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>코코보리</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="/resources/css/common/footer.css" type="text/css">
 </head>
 

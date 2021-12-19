@@ -10,12 +10,14 @@ html, body {
     display: flex;
     justify-content: center;
 }
+/*
 #imgSlide {
 	width: 100%;
 	height: 350px;
 	background: #dbefca;
 	margin-bottom: 20px;
 }
+*/
 #board_main {
 	width: 1200px;
 	border-spacing: 5px;

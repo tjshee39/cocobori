@@ -26,13 +26,13 @@
 	
 	<!-- 업로드 패스 설정 -->
 	<beans:bean id = "uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\Users\gksh0\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\COCOBORI\resources">
+		<beans:constructor-arg value="C:\Users\Sunny\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\COCOBORI\resources">
 		</beans:constructor-arg>
 	</beans:bean>
 	
 	<!-- 업로드 패스 설정:: community board -->
 	<beans:bean id = "BoarduploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\Users\PPC028\Documents\workspace-spring-tool-suite-4-4.11.0.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cocobori\resources">
+		<beans:constructor-arg value="C:\Users\Sunny\Documents\workspace-spring-tool-suite-4-4.11.0.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cocobori\resources\boardImgUpload">
 		</beans:constructor-arg>
 	</beans:bean>
 	

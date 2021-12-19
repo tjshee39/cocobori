@@ -9,30 +9,16 @@ html, body {
     margin-right: 10%;
     justify-content: center;
 }
-.slider {
-	width: 1200px;
-	height: 350px;
-	margin-bottom: 20px;
+.board_main {
+	text-align: center;
 }
-.slider .indicators .indicator-item {
-  background-color: #666666;
-  border: 3px solid #ffffff;
-  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-.slider .indicators .indicator-item.active {
-  background-color: #ffffff;
-}
-.slider .indicators {
-  bottom: 60px;
-  z-index: 100;
-  /* text-align: left; */
+#img_slide {
+	list-style: none;
 }
 #board_main {
-	width: 1200px;
 	border-spacing: 5px;
 	border-collapse: separate;
+	display: inline-block;
 }
 .board_main td {
 	width: 200px;

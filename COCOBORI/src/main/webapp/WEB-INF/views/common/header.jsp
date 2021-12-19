@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>코코보리</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" href="/resources/css/common/header.css" type="text/css">
 </head>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <body>
 
 	<header class="header_area"> <!-- Top Header Area Start -->
